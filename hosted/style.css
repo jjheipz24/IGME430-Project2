@@ -1,4 +1,5 @@
 html, body {
+    font-family: 'Rubik', sans-serif;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -25,6 +26,50 @@ header {
     border-right: 3px solid lightgray;
 }
 
+h2 {
+    font-weight: lighter;
+    font-size: 1em;
+}
+
+#logo {
+    height: 40px;
+    width: 40;
+    padding-top: 5px;
+    float:left;
+    border-radius: 8px;
+}
+
+/**LOGIN PAGE**/
+#user, #pass, #pass2 {
+    text-align: center;
+    font-size: 1.1em;
+    width: 180px;
+    border-radius: 6px;
+}
+
+#user:focus, #pass:focus, #pass2:focus {
+    outline: none;
+    box-shadow: 0px 0px 1px 1px #55acee;
+}
+
+/***************/
+
+.formSubmit {
+    transition: background-color 0.4s ease;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 14px;
+    font-size: 1.2em;
+    width: 100px;
+    background-color: #55acee;
+    border-radius: 2px;
+    border-color: #66acee;
+    padding: 3px 0px;
+    color: white;
+    text-decoration: none;
+}
+
 #title {
     font-size: 4em;
 }
@@ -46,4 +91,18 @@ p {
     padding-top: 5px;
     float:left;
     border-radius: 8px;
+}
+
+.formSubmit:hover {
+    transition: background-color 0.4s ease;
+    background-color: #338acc;
+}
+
+
+
+#errorMessage {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: red;
+    font-style: italic;
 }
