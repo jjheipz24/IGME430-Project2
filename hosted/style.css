@@ -1,4 +1,5 @@
 html, body {
+    font-family: 'Rubik', sans-serif;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -8,7 +9,6 @@ html, body {
 }
 
 h1, h2 {
-    font-family: 'Rubik', sans-serif;
     color: #212121;
     padding: 0;
     margin: 0;
