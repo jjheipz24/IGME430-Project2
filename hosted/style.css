@@ -16,19 +16,22 @@ html, body {
 }
 
 header {
-    margin: 30px 20px 20px 30px;
+    margin: 40px 40px 40px 40px;
+    padding-left: 15vw;
 }
 
 #grid {
-    margin-left: 15px;
     padding-right: 20px;
     margin-right: 5px;
     border-right: 3px solid lightgray;
+
+    max-width: 1500px;
 }
 
-h2 {
+p {
     font-weight: lighter;
     font-size: 1em;
+    margin-left: 10px;
 }
 
 #logo {
@@ -71,7 +74,7 @@ h2 {
 }
 
 #title {
-    font-size: 4em;
+    font-size: 6em;
 }
 
 #sidebar h3 {
@@ -106,3 +109,5 @@ p {
     color: red;
     font-style: italic;
 }
+
+
