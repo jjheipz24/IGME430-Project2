@@ -8,7 +8,7 @@ html, body {
     background: linear-gradient(#f8f8f8, #FAFAFA, #DEDEDE);
 }
 
-#title, #sidebar h3 {
+#title, #sidebar button {
     font-family: 'Rubik', sans-serif;
     color: #212121;
     padding: 0;
@@ -77,10 +77,24 @@ p {
     font-size: 6em;
 }
 
-#sidebar h3 {
+#sidebar button {
     font-weight: lighter;
     font-size: 1.5em;
     margin-top: 20px;
+    background: none;
+    border: none;
+
+    padding: 2px 15px 2px 15px;
+    border-radius: 25px;
+    transition: all .5s ease-in;
+}
+
+/* https://codepen.io/bsander/pen/pPpbNm */
+#sidebar button:hover {
+    background: linear-gradient(90deg, rgba(52, 78, 92, 1) 0%, rgba(74, 177, 157, 1) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
+    background-size: 400% 400%;
+    animation: rainbow 5s ease-in-out infinite;;
+    color: #f8f8f8;
 }
 
 p {
@@ -110,4 +124,9 @@ p {
     font-style: italic;
 }
 
+@keyframes rainbow { 
+    0%{background-position:left}
+    50%{background-position:right}
+    100%{background-position:left}
+  }
 
