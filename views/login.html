@@ -14,28 +14,31 @@
     <div class="navlink"><a href="/login">Login</a></div>
     <div class="navlink"><a href="/signup">Sign up</a></div>
   </nav>-->
-    <!--<header class="row">
+  <!--<header class="row">
       <h1 id="title">SHMOOD</h1>
       <p>this is placeholder text for the website</p>
     </header>-->
-<div class="container" fluid>
-  <section id="login" class="row">
-    <form id="loginForm" name="loginForm" action="/login" method="POST" class="mainForm">
-      <h1>WELCOME</h1>
-      <div class="fields">
-      <div class="form-group col-xs-4">
-      <input class="field" id="user" type="text" name="username" placeholder="username" />
-      </div>
-      <div class="form-group col-xs-4">
-      <input class="field" id="pass" type="password" name="pass" placeholder="password" />
-      <input class="formSubmit" type="submit" value="Sign In" />
-      </div>
-      </div>
-    </form>
-  </section>
-</div>
+  <div class="container" fluid>
+    <section id="login" class="row">
+      <form id="loginForm" name="loginForm" action="/login" method="POST" class="mainForm">
+        <div class="greeting">
+          <img class="icon" src="../hosted/img/favicon.png" alt="logo for Shmood">
+          <h1>WELCOME</h1>
+        </div>
+        <div class="fields">
+          <div class="form-group col-xs-4">
+            <input class="field" id="user" type="text" name="username" placeholder="username" />
+          </div>
+          <div class="form-group col-xs-4">
+            <input class="field" id="pass" type="password" name="pass" placeholder="password" />
+          </div>
+        </div>
+        <button class="btn btn-primary rounded-pill" type="submit">Sign In</button>
+      </form>
+    </section>
+  </div>
 
- <!-- <div id="domoMessage">
+  <!-- <div id="domoMessage">
     <h3><span id="errorMessage">Wrong username or password</span></h3>
   </div> -->
   <script src="/assets/bundle.js"></script>
