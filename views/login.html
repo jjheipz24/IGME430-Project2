@@ -5,7 +5,6 @@
   <title>shmood</title>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <link rel="shortcut icon" href="/assets/img/favicon.png" />
-  <link rel="stylesheet" type="text/css" href="/hosted/loginStyles.css" />
   <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -13,6 +12,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/hosted/loginStyles.css" />
 </head>
 
 <body class="login-signup-page">
@@ -39,7 +39,8 @@
             <input class="field" id="pass" type="password" name="pass" placeholder="Password" />
           </div>
         </div>
-        <button class="btn btn-outline-secondary rounded-pill loginButton" type="submit">Sign In</button>
+        <button class="btn btn-secondary rounded-pill" id="loginButton" type="submit">Sign In</button>
+        <p>Don't have an account? <a href="./signup.handlebars">Sign Up</a></p>
       </form>
     </section>
   </div>
