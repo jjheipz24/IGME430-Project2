@@ -109,7 +109,7 @@ h2 {
 
 .field:focus {
     outline: none;
-    border-image-source: linear-gradient(90deg, rgba(52, 78, 92, 1) 0%, rgb(12, 49, 42) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
+    border-image-source: linear-gradient(90deg, rgba(52, 78, 92, 1) 0%, rgb(74, 177, 157, 1) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
     border-width: 5px;
     border-image-slice: 1;
 }
