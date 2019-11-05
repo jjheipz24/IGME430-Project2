@@ -66,7 +66,7 @@ h2 {
     box-shadow: 0 12px 16px 0 rgba(49, 49, 49, 0.4), 0 14px 28px 0 rgba(61, 61, 61, 0.2);
 }
 
-.greeting{
+.greeting {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -75,11 +75,12 @@ h2 {
     margin-bottom: 30px;
 }
 
-#loginForm h1{
+#loginForm h1 {
     font-size: 34px;
     text-align: center;
 }
-.icon{
+
+.icon {
     height: 40px;
     width: 40px;
 }
@@ -91,11 +92,11 @@ h2 {
     width: 100%;
 }
 
-.fields{
-   margin: 25px;
+.fields {
+    margin: 25px;
 }
 
-.field{
+.field {
     text-align: left;
     font-size: 1.5em;
     width: 100%;
@@ -107,6 +108,10 @@ h2 {
 
 .field:focus {
     outline: none;
+}
+
+.loginButton {
+    margin-bottom: 50px;
 }
 
 /***************/
