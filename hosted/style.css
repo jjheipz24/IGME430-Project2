@@ -93,7 +93,7 @@ p {
 #sidebar button:hover {
     background: linear-gradient(90deg, rgba(52, 78, 92, 1) 0%, rgba(74, 177, 157, 1) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
     background-size: 400% 400%;
-    animation: rainbow 5s ease-in-out infinite;;
+    animation: rainbow 5s ease-in-out infinite;
     color: #f8f8f8;
 }
 
