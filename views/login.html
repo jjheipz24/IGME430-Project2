@@ -9,30 +9,35 @@
   <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="login-signup-page">
   <!--<nav><a href="/login"><img id="logo" src="/assets/img/face.png" alt="face logo" /></a>
     <div class="navlink"><a href="/login">Login</a></div>
     <div class="navlink"><a href="/signup">Sign up</a></div>
   </nav>-->
-  <div class="container">
-    <header class="row">
-      <h1>SHMOOD</h1>
-      <h2>this is placeholder text for the website</h2>
-    </header>
-  </div>
-  <section id="login">
+    <!--<header class="row">
+      <h1 id="title">SHMOOD</h1>
+      <p>this is placeholder text for the website</p>
+    </header>-->
+<div class="container" fluid>
+  <section id="login" class="row">
     <form id="loginForm" name="loginForm" action="/login" method="POST" class="mainForm">
-      <label for="username">username: </label>
-      <input id="user" type="text" name="username" placeholder="username" />
-      <label for="pass">password: </label>
-      <input id="pass" type="password" name="pass" placeholder="password" />
+      <h1>WELCOME</h1>
+      <div class="fields">
+      <div class="form-group col-xs-4">
+      <input class="field" id="user" type="text" name="username" placeholder="username" />
+      </div>
+      <div class="form-group col-xs-4">
+      <input class="field" id="pass" type="password" name="pass" placeholder="password" />
       <input class="formSubmit" type="submit" value="Sign In" />
+      </div>
+      </div>
     </form>
   </section>
+</div>
 
-  <div id="domoMessage">
+ <!-- <div id="domoMessage">
     <h3><span id="errorMessage">Wrong username or password</span></h3>
-  </div>
+  </div> -->
   <script src="/assets/bundle.js"></script>
 </body>
 
