@@ -1,30 +1,47 @@
 <html lang="en">
+
 <head>
-  <meta charset="utf-8"/>
-  <title>DomoMaker</title>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <link rel="shortcut icon" href="/assets/img/favicon.png"/>
-  <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
+  <meta charset="utf-8" />
+  <title>SHMOOD</title>
 </head>
-<body>
-  <nav><a href="/login"><img id="logo" src="/assets/img/face.png" alt="face logo"/></a>
+
+<body class="login-signup-page">
+  <!--<nav><a href="/login"><img id="logo" src="/assets/img/face.png" alt="face logo" /></a>
     <div class="navlink"><a href="/login">Login</a></div>
     <div class="navlink"><a href="/signup">Sign up</a></div>
-  </nav>
-  <section id="signup">
-    <form id="signupForm" name="signupForm" action="/signup" method="POST" class="mainForm">
-      <label for="username">Username: </label>
-      <input id="user" type="text" name="username" placeholder="username"/>
-      <label for="pass">Password: </label>
-      <input id="pass" type="password" name="pass" placeholder="password"/>
-      <label for="pass2">Password: </label>
-      <input id="pass2" type="password" name="pass2" placeholder="retype password"/>
-      <input class="formSubmit" type="submit" value="Sign Up" />
-    </form>
-  </section>
-  <div id="domoMessage"><img id="speech" src="/assets/img/speech.png" alt="speech box"/>
-    <h3><span id="errorMessage"></span></h3><img id="domo" src="assets/img/domo.png" alt="domo"/>
+  </nav>-->
+  <!--<header class="row">
+      <h1 id="title">SHMOOD</h1>
+      <p>this is placeholder text for the website</p>
+    </header>-->
+  <div class="container" fluid>
+    <section id="signup" class="row">
+      <form id="signupForm" name="signupForm" action="/signup" method="POST" class="mainForm">
+        <div class="greeting">
+          <img class="icon" src="../hosted/img/favicon.png" alt="logo for Shmood">
+          <h1>WELCOME</h1>
+        </div>
+        <div class="fields">
+          <div class="form-group col-xs-4">
+            <input class="field" id="user" type="text" name="username" placeholder="Username" />
+          </div>
+          <div class="form-group col-xs-4">
+            <input class="field" id="pass" type="password" name="pass" placeholder="Password" />
+          </div>
+          <div class="form-group col-xs-4">
+            <input class="field" id="pass2" type="password" name="pass2" placeholder="Retype password" />
+          </div>
+        </div>
+        <button class="btn btn-secondary rounded-pill" id="signupButton" type="submit">Sign Up</button>
+        <p>Already have an account? <a href="./login.handlebars">Login</a></p>
+      </form>
+    </section>
   </div>
+
+  <!-- <div id="domoMessage">
+    <h3><span id="errorMessage">Wrong username or password</span></h3>
+  </div> -->
   <script src="/assets/bundle.js"></script>
 </body>
+
 </html>

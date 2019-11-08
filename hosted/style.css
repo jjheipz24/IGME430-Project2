@@ -42,17 +42,102 @@ p {
     border-radius: 8px;
 }
 
-/**LOGIN PAGE**/
-#user, #pass, #pass2 {
-    text-align: center;
-    font-size: 1.1em;
-    width: 180px;
-    border-radius: 6px;
+.login-signup-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgb(52, 78, 92);
+    background: linear-gradient(135deg, rgba(52, 78, 92, 1) 0%, rgba(74, 177, 157, 1) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
+    background-size: 200% 200%;
+    animation: rainbow 15s ease-in-out infinite;
+
 }
 
-#user:focus, #pass:focus, #pass2:focus {
+/**LOGIN PAGE**/
+#login, #signup {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#loginForm, #signupForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 12px 16px 0 rgba(49, 49, 49, 0.4), 0 14px 28px 0 rgba(61, 61, 61, 0.2);
+}
+
+.greeting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+    margin-bottom: 30px;
+}
+
+#loginForm h1, #signupForm h1 {
+    font-size: 34px;
+    text-align: center;
+}
+
+.icon {
+    height: 40px;
+    width: 40px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.fields {
+    margin: 25px;
+}
+
+.field {
+    text-align: left;
+    font-size: 22px;
+    width: 100%;
+    max-width: 520px;
+    border: none;
+    border-bottom: 3px solid lightgray;
+    margin-bottom: 30px;
+}
+
+.field:focus {
     outline: none;
-    box-shadow: 0px 0px 1px 1px #55acee;
+    border-image-source: linear-gradient(90deg, rgba(52, 78, 92, 1) 0%, rgb(74, 177, 157, 1) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
+    border-width: 5px;
+    border-image-slice: 1;
+}
+
+#loginButton, #signupButton {
+    width: 100%;
+    max-width: 250px;
+    margin-bottom: 50px;
+    color: #212121;
+    background-color: lightgray;
+    border: none;
+}
+
+#loginButton:hover, #signupButton:hover{
+    background-image: linear-gradient(135deg, rgba(52, 78, 92, 1) 0%, rgba(74, 177, 157, 1) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
+    animation: rainbow 5s ease-in-out infinite;
+    color: white;
+}
+
+#loginForm p, #signupForm p{
+    font-size: 14px;
+}
+
+#loginForm a, #signupForm a{
+    color:  rgba(74, 177, 157, 1);
 }
 
 /***************/
@@ -75,6 +160,11 @@ p {
 
 #title {
     font-size: 6em;
+}
+
+a {
+    text-decoration: none;
+    color: #212121;
 }
 
 #sidebar button {

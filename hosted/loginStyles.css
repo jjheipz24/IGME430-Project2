@@ -47,17 +47,19 @@ h2 {
     justify-content: center;
     background: rgb(52, 78, 92);
     background: linear-gradient(135deg, rgba(52, 78, 92, 1) 0%, rgba(74, 177, 157, 1) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
+    background-size: 200% 200%;
+    animation: rainbow 15s ease-in-out infinite;
 
 }
 
 /**LOGIN PAGE**/
-#login {
+#login, #signup {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-#loginForm {
+#loginForm, #signupForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -76,7 +78,7 @@ h2 {
     margin-bottom: 30px;
 }
 
-#loginForm h1 {
+#loginForm h1, #signupForm h1 {
     font-size: 34px;
     text-align: center;
 }
@@ -114,7 +116,7 @@ h2 {
     border-image-slice: 1;
 }
 
-#loginButton {
+#loginButton, #signupButton {
     width: 100%;
     max-width: 250px;
     margin-bottom: 50px;
@@ -123,17 +125,17 @@ h2 {
     border: none;
 }
 
-#loginButton:hover{
+#loginButton:hover, #signupButton:hover{
     background-image: linear-gradient(135deg, rgba(52, 78, 92, 1) 0%, rgba(74, 177, 157, 1) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
     animation: rainbow 5s ease-in-out infinite;
     color: white;
 }
 
-#loginForm p{
+#loginForm p, #signupForm p{
     font-size: 14px;
 }
 
-#loginForm a{
+#loginForm a, #signupForm a{
     color:  rgba(74, 177, 157, 1);
 }
 
