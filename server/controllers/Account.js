@@ -11,7 +11,7 @@ const signupPage = (req, res) => {
 };
 
 const userPage = (req, res) => {
-  res.render('user', { name: req.session.Account.username }/*, { csrfToken: req.csrfToken() }*/);
+  res.render('user', { name: req.session.account.username }, /*{ csrfToken: req.csrfToken() }*/);
 }
 
 const logout = (req, res) => {
