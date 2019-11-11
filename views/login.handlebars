@@ -29,6 +29,7 @@
             <input class="field" id="pass" type="password" name="pass" placeholder="Password" />
           </div>
         </div>
+        <input id="csrf" type="hidden" name="_csrf" value={{csrfToken}} />
         <button class="btn btn-secondary rounded-pill" id="loginButton" type="submit">Sign In</button>
         <p>Don't have an account? <a href="./signup">Sign Up</a></p>
       </form>

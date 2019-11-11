@@ -32,6 +32,7 @@
             <input class="field" id="pass2" type="password" name="pass2" placeholder="Retype password" />
           </div>
         </div>
+        <input id="signupCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
         <button class="btn btn-secondary rounded-pill" id="signupButton" type="submit">Sign Up</button>
         <p>Already have an account? <a href="./login">Login</a></p>
       </form>
