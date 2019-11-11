@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 const expressHandlebars = require('express-handlebars');
 const session = require('express-session');
 const csrf = require('csurf');
+const RedisStore = require('connect-redis')(session);
+const url = require('url');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
@@ -19,6 +21,18 @@ mongoose.connect(dbURL, (err) => {
     throw err;
   }
 });
+
+let redisURL = {
+  hostname: 'redis-12329.c91.us-east-1-3.ec2.cloud.redislabs.com:12329',
+  port: '12329',
+};
+
+let redisPASS = 'uIZejJcEwW6J830nHHJMupyCeIfa3E8G';
+
+if (process.env.REDISCLOUD_URL) {
+  redisURL = url.parse(process.env.REDISCLOUD_URL);
+  redisPASS = redisURL.auth.split(':')[1];
+}
 
 // pull in routes
 const router = require('./router.js');
@@ -32,6 +46,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(session({
   key: 'sessionid',
+  store: new RedisStore({
+    host: redisURL.hostname,
+    port: redisURL.port,
+    pass: redisPASS,
+  }),
   secret: 'BIG Mood',
   resave: true,
   saveUninitialized: true,
