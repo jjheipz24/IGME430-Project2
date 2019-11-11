@@ -23,11 +23,11 @@ mongoose.connect(dbURL, (err) => {
 });
 
 let redisURL = {
-  hostname: 'redis-12329.c91.us-east-1-3.ec2.cloud.redislabs.com:12329',
-  port: '12329',
+  hostname: 'redis-12295.c114.us-east-1-4.ec2.cloud.redislabs.com',
+  port: 12295,
 };
 
-let redisPASS = 'uIZejJcEwW6J830nHHJMupyCeIfa3E8G';
+let redisPASS = 'H5J5665jZg4UNAMU5Nch6DSBNw5FBGfd';
 
 if (process.env.REDISCLOUD_URL) {
   redisURL = url.parse(process.env.REDISCLOUD_URL);
