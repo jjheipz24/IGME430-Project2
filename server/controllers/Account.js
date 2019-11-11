@@ -3,16 +3,18 @@ const models = require('../models');
 const Account = models.Account;
 
 const loginPage = (req, res) => {
-  res.render('login'/*, { csrfToken: req.csrfToken() }*/);
+  res.render('login');
 };
 
 const signupPage = (req, res) => {
-  res.render('signup'/*, { csrfToken: req.csrfToken() }*/);
+  res.render('signup');
 };
 
 const userPage = (req, res) => {
-  res.render('user', { name: req.session.account.username }, /*{ csrfToken: req.csrfToken() }*/);
-}
+  res.render('user', {
+    name: req.session.account.username,
+  });
+};
 
 const logout = (req, res) => {
   req.session.destroy();
@@ -27,17 +29,21 @@ const login = (request, response) => {
   const password = `${req.body.pass}`;
 
   if (!username || !password) {
-    return res.status(400).json({ error: 'Please fill in the required fields' });
+    return res.status(400).json({
+      error: 'Please fill in the required fields',
+    });
   }
 
   return Account.AccountModel.authenticate(username, password, (err, account) => {
     if (err || !account) {
-      return res.status(401).json({ error: 'Wrong username or password' });
+      return res.status(401).json({
+        error: 'Wrong username or password',
+      });
     }
 
     req.session.account = Account.AccountModel.toAPI(account);
 
-    res.redirect('/userPage');
+    return res.redirect('/userPage');
   });
 };
 
@@ -50,11 +56,15 @@ const signup = (request, response) => {
   req.body.pass2 = `${req.body.pass2}`;
 
   if (!req.body.username || !req.body.pass || !req.body.pass2) {
-    return res.status(400).json({ error: 'Please fill in the required fields' });
+    return res.status(400).json({
+      error: 'Please fill in the required fields',
+    });
   }
 
   if (req.body.pass !== req.body.pass2) {
-    return res.status(400).json({ error: 'Passwords do not match' });
+    return res.status(400).json({
+      error: 'Passwords do not match',
+    });
   }
 
   return Account.AccountModel.generateHash(req.body.pass, (salt, hash) => {
@@ -75,10 +85,14 @@ const signup = (request, response) => {
       console.log(err);
 
       if (err.code === 11000) {
-        return res.status(400).json({ error: 'Username already in use' });
+        return res.status(400).json({
+          error: 'Username already in use',
+        });
       }
 
-      return res.status(400).json({ error: 'An error occured' });
+      return res.status(400).json({
+        error: 'An error occured',
+      });
     });
   });
 };
