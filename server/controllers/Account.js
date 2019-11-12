@@ -2,22 +2,27 @@ const models = require('../models');
 
 const Account = models.Account;
 
+const homePage = (req, res) => {
+  res.render('app', {
+    name: req.session.account,
+  });
+};
+
 const loginPage = (req, res) => {
   res.render('login', {
-    csrfToken: req.csrfToken
+    csrfToken: req.csrfToken,
   });
 };
 
 const signupPage = (req, res) => {
   res.render('signup', {
-    csrfToken: req.csrfToken
+    csrfToken: req.csrfToken,
   });
 };
 
 const userPage = (req, res) => {
   res.render('user', {
-    csrfToken: req.csrfToken
-  }, {
+    csrfToken: req.csrfToken,
     name: req.session.account.username,
   });
 };
@@ -120,3 +125,4 @@ module.exports.signupPage = signupPage;
 module.exports.signup = signup;
 module.exports.userPage = userPage;
 module.exports.getToken = getToken;
+module.exports.homePage = homePage;

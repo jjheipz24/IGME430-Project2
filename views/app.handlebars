@@ -46,8 +46,15 @@
             </div>
 
             <div class="col-1" id="sidebar">
-                <button><a href="/signup">signup</a></button>
-                <button><a href="/login">login</a></button>
+                {{#if name.username}}
+                    <button><a href="/userPage">{{ name.username }}</button>
+                    <button>upload</button>
+                    <button><a href="/signup">settings</a></button>
+                    <button><a href="/logout">logout</a></button>
+                {{else}}
+                    <button><a href="/signup">signup</a></button>
+                    <button><a href="/login">login</a></button>
+                {{/if}}
             </div>
         </div>
     </div>
