@@ -27,7 +27,6 @@ const userPage = (req, res) => {
   });
 };
 
-
 const logout = (req, res) => {
   req.session.destroy();
   res.redirect('/');
@@ -55,7 +54,7 @@ const login = (request, response) => {
 
     req.session.account = Account.AccountModel.toAPI(account);
 
-    return res.redirect('/userPage');
+    return res.status(200).json({redirect: '/userPage'});
   });
 };
 
@@ -91,7 +90,7 @@ const signup = (request, response) => {
     const savePromise = newAccount.save();
     savePromise.then(() => {
       req.session.account = Account.AccountModel.toAPI(newAccount);
-      res.redirect('/userPage');
+      return res.status(201).json({redirect: '/userPage'});
     });
     savePromise.catch((err) => {
       console.log(err);
@@ -127,5 +126,4 @@ module.exports.signup = signup;
 module.exports.userPage = userPage;
 module.exports.getToken = getToken;
 module.exports.homePage = homePage;
-
 

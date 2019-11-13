@@ -18,7 +18,7 @@
     <section id="login" class="row">
       <form id="loginForm" name="loginForm" action="/login" method="POST" class="mainForm">
         <div class="greeting">
-          <img class="icon" src="./assets/img/favicon.png" alt="logo for Shmood">
+          <img class="icon" src="./assets/img/largeLogo.png" alt="logo for Shmood">
           <h1>WELCOME</h1>
         </div>
         <div class="fields">
@@ -31,14 +31,15 @@
         </div>
         <input id="loginCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
         <button class="btn btn-secondary rounded-pill" id="loginButton" type="submit">Sign In</button>
+        
+        <div class="alert alert-danger" id="error" role="alert">
+          Username or password is incorrect
+        </div>
+        
         <p>Don't have an account? <a href="./signup">Sign Up</a></p>
       </form>
     </section>
   </div>
-
-  <!-- <div id="domoMessage">
-    <h3><span id="errorMessage">Wrong username or password</span></h3>
-  </div> -->
   <script src="/assets/bundle.js"></script>
 </body>
 

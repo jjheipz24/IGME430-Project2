@@ -8,15 +8,20 @@
 <body>
 
     <div class="container-fluid">
-        <div class="row justify-content-left">
-            <header>
-                <h1 id="title"><a href="/">SHMOOD</a></h1>
-                <p>this is placeholder text for the website</p>
-            </header>
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <header>
+                    <h1 id="title"><a href="/">SHMOOD</a></h1>
+                    <p>this is placeholder text for the website</p>
+                </header>
+            </div>
+            <div class="col-1">
+                
+            </div>
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-11" id="grid">
+            <div class="col-10" id="grid">
                 <div class="row">
                 <div class="col">
                     <img src="./assets/img/test7.jpg" class="img-fluid mb-4">
@@ -46,15 +51,17 @@
             </div>
 
             <div class="col-1" id="sidebar">
-                {{#if name.username}}
-                    <button><a href="/userPage">{{ name.username }}</button>
-                    <button>upload</button>
-                    <button><a href="/signup">settings</a></button>
-                    <button><a href="/logout">logout</a></button>
-                {{else}}
-                    <button><a href="/signup">signup</a></button>
-                    <button><a href="/login">login</a></button>
-                {{/if}}
+                <div class="position-fixed btn-group-vertical">
+                    {{#if name.username}}
+                        <button><a href="/userPage">{{ name.username }}</a></button>
+                        <button>upload</button>
+                        <button><a href="/signup">settings</a></button>
+                        <button><a href="/logout">logout</a></button>
+                    {{else}}
+                        <button><a href="/signup">signup</a></button>
+                        <button><a href="/login">login</a></button>
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>

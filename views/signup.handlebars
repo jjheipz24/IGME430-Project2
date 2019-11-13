@@ -18,7 +18,7 @@
     <section id="signup" class="row">
       <form id="signupForm" name="signupForm" action="/signup" method="POST" class="mainForm">
         <div class="greeting">
-          <img class="icon" src="./assets/img/favicon.png" alt="logo for Shmood">
+          <img class="icon" src="./assets/img/largeLogo.png" alt="logo for Shmood">
           <h1>WELCOME</h1>
         </div>
         <div class="fields">
@@ -34,14 +34,15 @@
         </div>
         <input id="signupCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
         <button class="btn btn-secondary rounded-pill" id="signupButton" type="submit">Sign Up</button>
+
+        <div class="alert alert-danger" id="error" role="alert">
+          Passwords do not match
+        </div>
+
         <p>Already have an account? <a href="./login">Login</a></p>
       </form>
     </section>
   </div>
-
-  <!-- <div id="domoMessage">
-    <h3><span id="errorMessage">Wrong username or password</span></h3>
-  </div> -->
   <script src="/assets/bundle.js"></script>
 </body>
 
