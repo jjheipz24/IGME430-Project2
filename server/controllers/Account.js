@@ -27,12 +27,6 @@ const userPage = (req, res) => {
   });
 };
 
-const changePasswordPage = (req, res) => {
-  res.render('password-change', {
-    csrfToken: req.csrfToken,
-  });
-};
-
 const logout = (req, res) => {
   req.session.destroy();
   res.redirect('/');
@@ -132,5 +126,4 @@ module.exports.signup = signup;
 module.exports.userPage = userPage;
 module.exports.getToken = getToken;
 module.exports.homePage = homePage;
-module.exports.changePasswordPage = changePasswordPage;
 
