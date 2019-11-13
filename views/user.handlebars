@@ -10,13 +10,13 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-10">
-               <header>
-                <h1 id="userTitle"><a href="/">{{ name }}</a></h1>
-                <p>this is your personalized shmood page</p>
-            </header>
+                <header>
+                    <h1 id="userTitle"><a href="/">{{ name }}</a></h1>
+                    <p>this is your personalized shmood page</p>
+                </header>
             </div>
             <div class="col-1">
-                
+
             </div>
         </div>
 
@@ -41,6 +41,14 @@
                 </div>
             </div>
 
+            <div class="position-fixed btn-group-vertical">
+                <button><a href="/userPage">{{ name }}</a></button>
+                <button>upload</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePassword">Change
+                    Password</button>
+                <button><a href="/logout">logout</a></button>
+            </div>
+
             <!--Password Change Modal-->
             <div class="modal fade" id="changePassword" tabindex="-1" role="dialog"
                 aria-labelledby="changePasswordTitle" aria-hidden="true">
@@ -53,7 +61,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="changePasswordForm" name="changePasswordForm" action="/changePassword" method="POST" class="changePasswordForm">
+                            <form id="changePasswordForm" name="changePasswordForm" action="/changePassword"
+                                method="POST" class="changePasswordForm">
 
                                 <div class="fields">
                                     <div class="form-group col-xs-4">
@@ -70,18 +79,12 @@
                                     </div>
                                 </div>
                                 <input id="signupCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
-                                <button class="btn btn-secondary rounded-pill" id="changePasswordButton" type="submit">Change Password</button>
+                                <button class="btn btn-secondary rounded-pill" id="changePasswordButton"
+                                    type="submit">Change Password</button>
                             </form>
                         </div>
                     </div>
                 </div>
-               <div class="position-fixed btn-group-vertical">
-                    <button><a href="/userPage">{{ name }}</a></button>
-                    <button>upload</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePassword">Change
-                    Password</button>
-                    <button><a href="/logout">logout</a></button>
-               </div>
             </div>
         </div>
     </div>
