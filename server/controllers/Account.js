@@ -29,7 +29,7 @@ const userPage = (req, res) => {
 
 const changePasswordPage = (req, res) => {
   res.render('password-change', {
-    csrfToken: req.csrfToken
+    csrfToken: req.csrfToken,
   });
 };
 
@@ -60,7 +60,7 @@ const login = (request, response) => {
 
     req.session.account = Account.AccountModel.toAPI(account);
 
-    return res.redirect('/userPage');
+    return res.status(200).json({redirect: '/userPage'});
   });
 };
 
@@ -96,7 +96,7 @@ const signup = (request, response) => {
     const savePromise = newAccount.save();
     savePromise.then(() => {
       req.session.account = Account.AccountModel.toAPI(newAccount);
-      res.redirect('/userPage');
+      return res.status(201).json({redirect: '/userPage'});
     });
     savePromise.catch((err) => {
       console.log(err);
