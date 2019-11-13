@@ -78,9 +78,13 @@
                                             placeholder="Retype password" />
                                     </div>
                                 </div>
-                                <input id="signupCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
-                                <button class="btn btn-secondary rounded-pill" id="changePasswordButton"
-                                    type="submit">Change Password</button>
+                                <div class="modal-footer">
+                                    <input id="signupCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
+                                    <button class="btn btn-secondary rounded-pill" id="cancelButton"
+                                        data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-secondary rounded-pill" id="changePasswordButton"
+                                        type="submit">Change Password</button>
+                                </div>
                             </form>
                         </div>
                     </div>
