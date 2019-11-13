@@ -54,7 +54,9 @@ const login = (request, response) => {
 
     req.session.account = Account.AccountModel.toAPI(account);
 
-    return res.status(200).json({ redirect: '/userPage' });
+    return res.status(200).json({
+      redirect: '/userPage'
+    });
   });
 };
 
@@ -90,7 +92,9 @@ const signup = (request, response) => {
     const savePromise = newAccount.save();
     savePromise.then(() => {
       req.session.account = Account.AccountModel.toAPI(newAccount);
-      return res.status(201).json({ redirect: '/userPage' });
+      return res.status(201).json({
+        redirect: '/userPage'
+      });
     });
     savePromise.catch((err) => {
       console.log(err);
@@ -105,6 +109,49 @@ const signup = (request, response) => {
         error: 'An error occured',
       });
     });
+  });
+};
+
+const changePassword = (request, response) => {
+  const req = request;
+  const res = response;
+
+  req.body.currentPass = `${req.body.currentPass}`;
+  req.body.newPass = `${req.body.newPass}`;
+  req.body.pass2 = `${req.body.pass2}`;
+
+  if (!req.body.currentPass || !req.body.newPass || !req.body.pass2) {
+    return res.status(400).json({
+      error: 'Please fill in the required fields',
+    });
+  }
+
+  if (req.body.newPass !== req.body.pass2) {
+    return res.status(400).json({
+      error: 'Passwords do not match',
+    });
+  }
+
+  Account.findById(req.session.account._id, (err, doc) => {
+    if (err) {
+      res.json(err);
+    }
+    if (!doc) {
+      res.json({
+        error: "no document found"
+      });
+    }
+
+    let account = doc;
+    account.password = req.body.newPass;
+    let savePromise = account.save();
+    savePromise.then(()=>{
+      return res.json({
+        redirect: '/user',
+      });
+    });
+    savePromise.catch((err) => res.json(err));
+
   });
 };
 
@@ -126,4 +173,3 @@ module.exports.signup = signup;
 module.exports.userPage = userPage;
 module.exports.getToken = getToken;
 module.exports.homePage = homePage;
-
