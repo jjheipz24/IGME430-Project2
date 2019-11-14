@@ -173,3 +173,4 @@ module.exports.signup = signup;
 module.exports.userPage = userPage;
 module.exports.getToken = getToken;
 module.exports.homePage = homePage;
+module.exports.changePassword = changePassword;
