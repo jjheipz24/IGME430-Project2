@@ -11,6 +11,9 @@
         <div class="row justify-content-center">
             <div class="col-10">
                 <header>
+                    <div class="alert alert-success" id="success" role="alert">
+                        Password change successful
+                    </div>
                     <h1 id="userTitle"><a href="/">{{ name }}</a></h1>
                     <p>this is your personalized shmood page</p>
                 </header>
@@ -87,8 +90,10 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
+                                        <div class="alert alert-danger" id="error" role="alert">
+                                            Password is incorrect
+                                        </div>
                                         <input id="signupCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
-                                        <input id="username" type="hidden" name="username" value={{name}} />
                                         <button class="btn btn-secondary rounded-pill" id="cancelButton"
                                             data-dismiss="modal">Cancel</button>
                                         <button class="btn btn-secondary rounded-pill" id="changePasswordButton"
