@@ -23,13 +23,15 @@
         <div class="row justify-content-center">
             <div class="col-10" id="grid">
                 <div class="row">
-                    {{!-- {{#if imgs}}
+                    {{#if imgs}}
                         <div class="col">
                         {{#each img}}
                             <img src={{img}} class="img-fluid mb-4">
                         {{/each}}
                         </div>
-                    {{/if}} --}}
+                    {{else}}
+                        <h2 id="noImg">No images have been uploaded by users yet</h2>
+                    {{/if}}
                 {{!-- <div class="col">
                     <img src="./assets/img/test7.jpg" class="img-fluid mb-4">
                     <img src="./assets/img/test8.jpg" class="img-fluid mb-4">

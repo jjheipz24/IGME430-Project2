@@ -2,50 +2,61 @@ const models = require('../models');
 const Img = models.Images;
 
 const uploadImage = (req, res) => {
-  console.log(req.files);
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).json({ error: 'No files were uploaded' });
-  }
+  req.pipe(req.busboy);
+  req.busboy.on('file', () => {
+    console.log(req.files);
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).json({ error: 'No files were uploaded' });
+    }
 
-  const imgFile = {
-    name: req.files.img.name,
-    data: req.file.img.data,
-    size: req.file.img.size,
-    tempFilePath: req.fies.img.tempFilePath,
-    mimeType: req.files.img.mimeType,
-    user: req.session.accoumt._id,
-  };
+    const imgFile = {
+      name: req.files.img.name,
+      data: req.file.img.data,
+      size: req.file.img.size,
+      tempFilePath: req.fies.img.tempFilePath,
+      mimeType: req.files.img.mimeType,
+      user: req.session.account._id,
+    };
 
-  const imageModel = new Img.ImgModel(imgFile);
+    const imageModel = new Img.ImgModel(imgFile);
 
-  const savePromise = imageModel.save();
-  savePromise.then(() => {
-    res.json({ message: 'upload successful' });
+    const savePromise = imageModel.save();
+    savePromise.then(() => {
+      res.json({ message: 'upload successful' });
+    });
+
+    savePromise.catch((error) => {
+      res.json({ error });
+    });
+
+    return savePromise;
   });
-
-  savePromise.catch((error) => {
-    res.json({ error });
+  req.busboy.on('finish', () => {
+    res.redirect('/');
+    res.end('Image Uploaded');
   });
-
-  return savePromise;
 };
 
 const retrieveImage = (req, res, imgName) => {
-  Img.ImgModel.findOne({ name: imgName }, (error, doc) => {
-    if (error) {
-      return res.status(400).json({ error });
-    }
-
-    if (!doc) {
-      return res.status(400).json({ error: 'File not found' });
-    }
-
-    res.writeHead(200, {
-      'Content-Type': doc.mimetype,
-      'Content-Length': doc.size,
+  req.busboy.on('file', () => {
+    Img.ImgModel.findOne({ name: imgName }, (error, doc) => {
+      if (error) {
+        return res.status(400).json({ error });
+      }
+  
+      if (!doc) {
+        return res.status(400).json({ error: 'File not found' });
+      }
+  
+      res.writeHead(200, {
+        'Content-Type': doc.mimetype,
+        'Content-Length': doc.size,
+      });
     });
-
-    return res.end(doc.data);
+    req.busboy.on('finish', () => {
+      res.redirect('/');
+      return res.end(doc.data);
+    });
   });
 };
 
@@ -78,7 +89,7 @@ const homePage = (req, res) => {
       categories.push(this.slice(i, i + 3));
     }
 
-    console.log(categories);
+    console.log(allImages);
     return res.render('app', {
       csrfToken: req.csrfToken,
       name: req.session.account,
