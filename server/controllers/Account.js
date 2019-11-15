@@ -104,7 +104,6 @@ const changePassword = (request, response) => {
   const req = request;
   const res = response;
 
-  req.body.username = `${req.body.username}`;
   req.body.currentPass = `${req.body.currentPass}`;
   req.body.newPass = `${req.body.newPass}`;
   req.body.pass2 = `${req.body.pass2}`;
@@ -121,39 +120,26 @@ const changePassword = (request, response) => {
     });
   }
 
-  const fullAccount = Account.AccountModel.findByUsername(req.body.username, (err, doc) => {
+  Account.AccountModel.authenticate(req.session.account.username, req.body.currentPass, (err, doc) => {
     if (err) {
-      return callback(err);
+      return res.status(400).json({ err });
     }
 
     if (!doc) {
-      return callback();
-    }
-  });
-
-  console.log(fullAccount);
-
- /* Account.findById(req.session.account._id, (err, doc) => {
-    if (err) {
-      res.json(err);
-    }
-    if (!doc) {
-      res.json({
-        error: "no document found"
-      });
+      return res.status(400).json({ err: 'invalid credentials' });
     }
 
-    let account = doc;
-    account.password = req.body.newPass;
-    let savePromise = account.save();
-    savePromise.then(()=>{
-      return res.json({
-        redirect: '/user',
-      });
+    Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
+      Account.AccountModel.updateOne({ username: req.session.account.username },
+        { salt, password: hash }, (err) => {
+          if (err) {
+            return res.status(400).json({ err });
+          }
+
+          return res.redirect('/userPage');
+        });
     });
-    savePromise.catch((err) => res.json(err));
-
-  });*/
+  });
 };
 
 const getToken = (request, response) => {
