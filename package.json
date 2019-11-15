@@ -10,7 +10,7 @@
   "scripts": {
     "build": "babel ./client --out-file ./hosted/bundle.js",
     "watch": "babel --watch ./client --out-file ./hosted/bundle.js",
-    "nodemon": "nodemon --watch ./server ./server/app.js",
+    "nodemon": "nodemon -e js,handlebars,css --watch ./server ./server/app.js",
     "start": "node ./server/app.js",
     "pretest": "eslint ./server --fix",
     "test": "echo \"Tests complete\""
