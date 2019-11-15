@@ -1,5 +1,5 @@
 const models = require('../models');
-
+const mongoose = require('mongoose');
 const Account = models.Account;
 
 const loginPage = (req, res) => {
@@ -103,6 +103,7 @@ const changePassword = (request, response) => {
   const req = request;
   const res = response;
 
+  req.body.username = `${req.body.username}`
   req.body.currentPass = `${req.body.currentPass}`;
   req.body.newPass = `${req.body.newPass}`;
   req.body.pass2 = `${req.body.pass2}`;
@@ -119,7 +120,9 @@ const changePassword = (request, response) => {
     });
   }
 
-  Account.findById(req.session.account._id, (err, doc) => {
+  console.log(req.body.username);
+
+ /* Account.findById(req.session.account._id, (err, doc) => {
     if (err) {
       res.json(err);
     }
@@ -139,7 +142,7 @@ const changePassword = (request, response) => {
     });
     savePromise.catch((err) => res.json(err));
 
-  });
+  });*/
 };
 
 const getToken = (request, response) => {
