@@ -42,6 +42,11 @@ p {
     border-radius: 8px;
 }
 
+#noImg {
+    color: rgb(156, 156, 156);
+    padding: 100px 100px 100px 20px;
+}
+
 .login-signup-page {
     display: flex;
     flex-direction: column;

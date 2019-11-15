@@ -42,7 +42,7 @@ const login = (request, response) => {
     req.session.account = Account.AccountModel.toAPI(account);
 
     return res.status(200).json({
-      redirect: '/userPage'
+      redirect: '/userPage',
     });
   });
 };
@@ -80,7 +80,7 @@ const signup = (request, response) => {
     savePromise.then(() => {
       req.session.account = Account.AccountModel.toAPI(newAccount);
       return res.status(201).json({
-        redirect: '/userPage'
+        redirect: '/userPage',
       });
     });
     savePromise.catch((err) => {
@@ -125,20 +125,17 @@ const changePassword = (request, response) => {
     }
     if (!doc) {
       res.json({
-        error: "no document found"
+        error: 'no document found',
       });
     }
 
-    let account = doc;
+    const account = doc;
     account.password = req.body.newPass;
-    let savePromise = account.save();
-    savePromise.then(()=>{
-      return res.json({
-        redirect: '/user',
-      });
-    });
+    const savePromise = account.save();
+    savePromise.then(() => res.json({
+      redirect: '/user',
+    }));
     savePromise.catch((err) => res.json(err));
-
   });
 };
 
