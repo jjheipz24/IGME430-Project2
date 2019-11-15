@@ -40,9 +40,10 @@ const login = (request, response) => {
     }
 
     req.session.account = Account.AccountModel.toAPI(account);
+    console.log(req.session.account);
 
     return res.status(200).json({
-      redirect: '/userPage'
+      redirect: '/userPage',
     });
   });
 };
@@ -80,7 +81,7 @@ const signup = (request, response) => {
     savePromise.then(() => {
       req.session.account = Account.AccountModel.toAPI(newAccount);
       return res.status(201).json({
-        redirect: '/userPage'
+        redirect: '/userPage',
       });
     });
     savePromise.catch((err) => {
@@ -103,7 +104,7 @@ const changePassword = (request, response) => {
   const req = request;
   const res = response;
 
-  req.body.username = `${req.body.username}`
+  req.body.username = `${req.body.username}`;
   req.body.currentPass = `${req.body.currentPass}`;
   req.body.newPass = `${req.body.newPass}`;
   req.body.pass2 = `${req.body.pass2}`;
@@ -120,7 +121,17 @@ const changePassword = (request, response) => {
     });
   }
 
-  console.log(req.body.username);
+  const fullAccount = Account.AccountModel.findByUsername(req.body.username, (err, doc) => {
+    if (err) {
+      return callback(err);
+    }
+
+    if (!doc) {
+      return callback();
+    }
+  });
+
+  console.log(fullAccount);
 
  /* Account.findById(req.session.account._id, (err, doc) => {
     if (err) {
