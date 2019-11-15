@@ -41,58 +41,66 @@
                 </div>
             </div>
 
-            <div class="position-fixed btn-group-vertical">
+            <!-- <div class="position-fixed btn-group-vertical">
                 <button><a href="/userPage">{{ name }}</a></button>
                 <button>upload</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePassword">Change
                     Password</button>
                 <button><a href="/logout">logout</a></button>
-            </div>
+            </div> -->
 
-            <!--Password Change Modal-->
-            <div class="modal fade" id="changePassword" tabindex="-1" role="dialog"
-                aria-labelledby="changePasswordTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="changePasswordTitle">Change Password</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="changePasswordForm" name="changePasswordForm" action="/changePassword"
-                                method="POST" class="changePasswordForm">
+            <div class="col-1" id="sidebar">
+                <div class="position-fixed btn-group-vertical">
+                    <button><a href="/userPage">{{ name }}</a></button>
+                    <button data-toggle="modal" data-target="#imgUpload">upload</button>
+                    <button data-toggle="modal" data-target="#changePassword">change password</button>
+                    <button><a href="/logout">logout</a></button>
+                </div>
 
-                                <div class="fields">
-                                    <div class="form-group col-xs-4">
-                                        <input class="field" id="currentPass" type="text" name="currentPass"
-                                            placeholder="Current password" />
+                <!--Password Change Modal-->
+                <div class="modal fade" id="changePassword" tabindex="-1" role="dialog"
+                    aria-labelledby="changePasswordTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="changePasswordTitle">Change Password</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="changePasswordForm" name="changePasswordForm" action="/changePassword"
+                                    method="POST" class="changePasswordForm">
+
+                                    <div class="fields">
+                                        <div class="form-group col-xs-4">
+                                            <input class="field" id="currentPass" type="text" name="currentPass"
+                                                placeholder="Current password" />
+                                        </div>
+                                        <div class="form-group col-xs-4">
+                                            <input class="field" id="newPass" type="password" name="newPass"
+                                                placeholder="New password" />
+                                        </div>
+                                        <div class="form-group col-xs-4">
+                                            <input class="field" id="pass2" type="password" name="pass2"
+                                                placeholder="Retype password" />
+                                        </div>
                                     </div>
-                                    <div class="form-group col-xs-4">
-                                        <input class="field" id="newPass" type="password" name="newPass"
-                                            placeholder="New password" />
+                                    <div class="modal-footer">
+                                        <input id="signupCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
+                                        <input id="username" type="hidden" name="username" value={{name}} />
+                                        <button class="btn btn-secondary rounded-pill" id="cancelButton"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button class="btn btn-secondary rounded-pill" id="changePasswordButton"
+                                            type="submit">Change Password</button>
                                     </div>
-                                    <div class="form-group col-xs-4">
-                                        <input class="field" id="pass2" type="password" name="pass2"
-                                            placeholder="Retype password" />
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <input id="signupCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
-                                    <input id="username" type="hidden" name="username" value={{name}} />
-                                    <button class="btn btn-secondary rounded-pill" id="cancelButton"
-                                        data-dismiss="modal">Cancel</button>
-                                    <button class="btn btn-secondary rounded-pill" id="changePasswordButton"
-                                        type="submit">Change Password</button>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 </body>
 

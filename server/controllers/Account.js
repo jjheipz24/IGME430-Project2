@@ -1,5 +1,4 @@
 const models = require('../models');
-const mongoose = require('mongoose');
 const Account = models.Account;
 
 const loginPage = (req, res) => {
@@ -40,7 +39,6 @@ const login = (request, response) => {
     }
 
     req.session.account = Account.AccountModel.toAPI(account);
-    console.log(req.session.account);
 
     return res.status(200).json({
       redirect: '/userPage',
@@ -86,7 +84,6 @@ const signup = (request, response) => {
     });
     savePromise.catch((err) => {
       console.log(err);
-
       if (err.code === 11000) {
         return res.status(400).json({
           error: 'Username already in use',
@@ -120,26 +117,37 @@ const changePassword = (request, response) => {
     });
   }
 
-  Account.AccountModel.authenticate(req.session.account.username, req.body.currentPass, (err, doc) => {
-    if (err) {
-      return res.status(400).json({ err });
-    }
-
-    if (!doc) {
-      return res.status(400).json({ err: 'invalid credentials' });
-    }
-
-    Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
-      Account.AccountModel.updateOne({ username: req.session.account.username },
-        { salt, password: hash }, (err) => {
-          if (err) {
-            return res.status(400).json({ err });
-          }
-
-          return res.redirect('/userPage');
+  Account.AccountModel.authenticate(req.session.account.username, req.body.currentPass,
+    (err, doc) => {
+      if (err) {
+        return res.status(400).json({
+          err,
         });
+      }
+
+      if (!doc) {
+        return res.status(400).json({
+          err: 'invalid credentials',
+        });
+      }
+
+      Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
+        Account.AccountModel.updateOne({
+          username: req.session.account.username,
+        }, {
+          salt,
+          password: hash,
+        }, (err) => {
+          if (err) {
+            return res.status(400).json({
+              err,
+            });
+          }
+        });
+      });
+
+      return res.redirect('/userPage');
     });
-  });
 };
 
 const getToken = (request, response) => {

@@ -183,6 +183,7 @@ a {
 #sidebar button, #sidebar2 button {
     font-weight: lighter;
     font-size: 1.5em;
+    text-align: left;
     margin-top: 20px;
     background: linear-gradient(90deg, rgba(52, 78, 92, 1) 0%, rgba(74, 177, 157, 1) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
     background-size: 600% 600%;
@@ -225,6 +226,10 @@ p {
 .formSubmit:hover {
     transition: background-color 0.4s ease;
     background-color: #338acc;
+}
+
+#cancelButton, #changePasswordButton{
+    
 }
 
 #error {
