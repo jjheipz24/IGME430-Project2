@@ -43,8 +43,8 @@ const app = express();
 app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted/`)));
 app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));
 app.use(compression());
+
 app.use(fileUpload());
-app.use(busboy());
 app.use(bodyParser.urlencoded({
   extended: true,
 }));

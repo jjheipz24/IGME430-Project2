@@ -23,39 +23,29 @@
         <div class="row justify-content-center">
             <div class="col-10" id="grid">
                 <div class="row">
-                    {{#if imgs}}
-                        <div class="col">
-                        {{#each img}}
-                            <img src={{img}} class="img-fluid mb-4">
-                        {{/each}}
-                        </div>
-                    {{else}}
-                        <h2 id="noImg">No images have been uploaded by users yet</h2>
-                    {{/if}}
-                {{!-- <div class="col">
-                    <img src="./assets/img/test7.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test8.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test9.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test4.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test11.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test6.jpg" class="img-fluid mb-4">
-                </div>
-                <div class="col">
-                    <img src="./assets/img/test15.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test12.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test3.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test10.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test5.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test2.jpg" class="img-fluid mb-4">
-                </div>
-                <div class="col">
-                    <img src="./assets/img/test13.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test1.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test17.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test18.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test16.jpg" class="img-fluid mb-4">
-                    <img src="./assets/img/test14.jpg" class="img-fluid mb-4">
-                </div> --}}
+                    <div class="col">
+                        {{#if imgs}}
+                            {{#each imgs}}
+                                <img src={{this}} class="img-fluid mb-4">
+                            {{/each}}
+                        {{else}}
+                            <h2 id="noImg">No images have been uploaded by users yet</h2>
+                        {{/if}}
+                    </div>
+                    <div class="col">
+                        {{#if imgs2}}
+                            {{#each imgs2}}
+                                <img src={{this}} class="img-fluid mb-4">
+                            {{/each}}
+                        {{/if}}
+                    </div>
+                    <div class="col">
+                        {{#if imgs3}}
+                            {{#each imgs3}}
+                                <img src={{this}} class="img-fluid mb-4">
+                            {{/each}}
+                        {{/if}}
+                    </div>
                 </div>
             </div>
 
@@ -72,7 +62,7 @@
                     {{/if}}
                 </div>
 
-                            <!--Password Change Modal-->
+                            <!--upload Modal-->
             <div class="modal fade" id="imgUpload" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -84,12 +74,12 @@
                         </div>
                         <div class="modal-body">
                             <form id="imgUploadForm" name="imgUploadForm" action="/uploadImg"
-                                method="POST" class="imgUploadForm">
+                                method="POST" class="imgUploadForm" encType="multipart/form-data">
 
                                 <div class="fields">
                                     <input type="file"
                                     id="userImg" name="img"
-                                    accept="image/png, image/jpeg">
+                                    accept="image/*">
                                 </div>
 
                                 <div class="modal-footer">

@@ -91,13 +91,8 @@ $(document).ready(function () {
 
         $("#error").fadeOut(400);
 
-        if ($("#currentPass").val() == '' || $("#newPass").val() == '' || $("#pass2").val() == '') {
-            showError("All fields are required");
-            return false;
-        }
-
         if ($("#userImg").val() == '') {
-            showError("Please choose an image to upload");
+            showError("Please select an image");
             return false;
         }
 

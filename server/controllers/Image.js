@@ -2,61 +2,62 @@ const models = require('../models');
 const Img = models.Images;
 
 const uploadImage = (req, res) => {
-  req.pipe(req.busboy);
-  req.busboy.on('file', () => {
-    console.log(req.files);
-    if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).json({ error: 'No files were uploaded' });
-    }
+  //If there are no files, return an error
+  if(!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).json({error: 'No files were uploaded'});
+  }
 
-    const imgFile = {
-      name: req.files.img.name,
-      data: req.file.img.data,
-      size: req.file.img.size,
-      tempFilePath: req.fies.img.tempFilePath,
-      mimeType: req.files.img.mimeType,
-      user: req.session.account._id,
-    };
 
-    const imageModel = new Img.ImgModel(imgFile);
+  if(req.files.img.truncated) {
+    return res.status(400).json({error: 'File is too large'});
+  }
+  
+  const imgFile = {
+    name: req.files.img.name,
+    data: req.files.img.data,
+    size: req.files.img.size,
+    mimetype: req.files.img.mimetype,
+    user: req.session.account._id,
+  };
 
-    const savePromise = imageModel.save();
-    savePromise.then(() => {
-      res.json({ message: 'upload successful' });
+  const imageModel = new Img.ImgModel(imgFile);
+  
+  //Save the image to mongo
+  let savePromise = imageModel.save();
+  
+  //When it is finished saving, let the user know
+  savePromise.then(()=>{
+    return res.status(201).json({
+      redirect: '/userPage',
     });
-
-    savePromise.catch((error) => {
-      res.json({ error });
-    });
-
-    return savePromise;
   });
-  req.busboy.on('finish', () => {
-    res.redirect('/');
-    res.end('Image Uploaded');
+  
+  //If there is an error while saving, let the user know
+  savePromise.catch((error)=>{
+    res.json({error});
   });
+  
+  //Return out
+  return savePromise;
 };
 
-const retrieveImage = (req, res, imgName) => {
-  req.busboy.on('file', () => {
-    Img.ImgModel.findOne({ name: imgName }, (error, doc) => {
-      if (error) {
-        return res.status(400).json({ error });
-      }
-  
-      if (!doc) {
-        return res.status(400).json({ error: 'File not found' });
-      }
-  
-      res.writeHead(200, {
-        'Content-Type': doc.mimetype,
-        'Content-Length': doc.size,
-      });
+const retrieveImage = (req, res) => {
+  Img.ImgModel.findOne({name: req.query.name}, (error, doc) => {
+    
+    if(error) {
+      return res.status(400).json({error});
+    }
+    
+    if(!doc) {
+      return res.status(400).json({error: 'File not found'});
+    }
+
+    res.writeHead(200, {
+      'Content-Type': doc.mimetype,
+      'Content-Length': doc.size,
     });
-    req.busboy.on('finish', () => {
-      res.redirect('/');
-      return res.end(doc.data);
-    });
+    
+    return res.end(doc.data);
   });
 };
 
@@ -78,29 +79,55 @@ const homePage = (req, res) => {
     }
 
     const allImages = [];
-
-    docs.forEach((img) => {
-      allImages.push(retrieveImage(req, res, img.name));
+    docs.forEach((doc) => {
+      let imagePath = `./retrieve?name=${doc.name}`;
+      allImages.push(imagePath);
     });
 
     const categories = [];
 
-    for (let i = 0; i < allImages.length; i += 3) {
-      categories.push(this.slice(i, i + 3));
+    for (let i = 0; i < allImages.length; i += allImages.length/3) {
+      categories.push(allImages.slice(i, i + allImages.length/3));
     }
 
-    console.log(allImages);
     return res.render('app', {
       csrfToken: req.csrfToken,
       name: req.session.account,
+      imgs: categories[1],
+      imgs2: categories[0],
+      imgs3: categories[2],
     });
   });
 };
 
-const userPage = (req, res) => res.render('user', {
-  csrfToken: req.csrfToken,
-  name: req.session.account.username,
-});
+const userPage = (req, res) => {
+  Img.ImgModel.findByUser(req.session.account._id, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'An error occured' });
+    }
+
+    const allImages = [];
+    docs.forEach((doc) => {
+      let imagePath = `./retrieve?name=${doc.name}`;
+      allImages.push(imagePath);
+    });
+
+    const categories = [];
+
+    for (let i = 0; i < allImages.length; i += allImages.length/3) {
+      categories.push(allImages.slice(i, i + allImages.length/3));
+    }
+
+    return res.render('user', {
+      csrfToken: req.csrfToken,
+      name: req.session.account.username,
+      imgs: categories[1],
+      imgs2: categories[0],
+      imgs3: categories[2],
+    });
+  });
+};
 
 
 module.exports.uploadImage = uploadImage;

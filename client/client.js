@@ -83,4 +83,21 @@ const showError = (message) => {
   
       return false;
     });
+
+
+    
+    $("#imgUploadForm").on("submit", (e) => {
+      e.preventDefault();
+  
+      $("#error").fadeOut(400);
+  
+      if($("#userImg").val() == '') {
+        showError("Please select an image");
+        return false;
+      }
+  
+      sendAjax($("#imgUploadForm").attr("action"), $("#imgUploadForm").serialize());
+  
+      return false;
+    });
   });

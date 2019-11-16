@@ -13,8 +13,8 @@ const router = (app) => {
   app.post('/changePassword', mid.requiresLogin, controllers.Account.changePassword);
   app.get('/logout', mid.requiresLogin, controllers.Account.logout);
 
-  app.post('/uploadImg', mid.requiresLogin, controllers.Image.uploadImage);
-  app.get('/retrieve', controllers.Image.uploadImage);
+  app.post('/uploadImg', controllers.Image.uploadImage);
+  app.get('/retrieve', controllers.Image.retrieve);
 };
 
 module.exports = router;

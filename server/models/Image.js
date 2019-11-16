@@ -6,22 +6,19 @@ const convertID = mongoose.Types.ObjectId;
 let ImgModel = {};
 
 const ImageSchema = new mongoose.Schema({
-  name: {
-    type: String,
+  name: { //The file name
+    type: String
   },
-  data: {
+  data: { //The actual image data
     type: Buffer,
   },
-  size: {
+  size: { //The size of the image in bytes
     type: Number,
   },
-  tempFilePath: {
+  mimetype: { //The type of image it is
     type: String,
   },
-  mimetype: {
-    type: String,
-  },
-  user: {
+  user: { 
     type: mongoose.Schema.ObjectId,
     required: true,
     ref: 'Account',
@@ -34,14 +31,14 @@ ImageSchema.statics.toAPI = (doc) => ({
 
 ImageSchema.statics.findByUser = (userId, callback) => {
   const search = {
-    owner: convertID(userId),
+    user: convertID(userId),
   };
 
-  return ImgModel.find(search).select('name data size tempFilePath mimeType user').exec(callback);
+  return ImgModel.find(search).select('name data size mimetype user').exec(callback);
 };
 
 ImageSchema.statics.findRandom = (callback) => ImgModel.find()
-  .select('name data size tempFilePath mimeType user')
+  .select('name data size mimetype user')
   .limit(36)
   .exec(callback);
 
