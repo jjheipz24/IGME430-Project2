@@ -29,7 +29,7 @@
                                 <img src={{this}} class="img-fluid mb-4">
                             {{/each}}
                         {{else}}
-                            <h2 id="noImg">No images have been uploaded by users yet</h2>
+                            <h2 id="noImg">This column is empty</h2>
                         {{/if}}
                     </div>
                     <div class="col">
@@ -37,6 +37,8 @@
                             {{#each imgs2}}
                                 <img src={{this}} class="img-fluid mb-4">
                             {{/each}}
+                        {{else}}
+                            <h2 id="noImg">This column is empty</h2>
                         {{/if}}
                     </div>
                     <div class="col">
@@ -44,6 +46,8 @@
                             {{#each imgs3}}
                                 <img src={{this}} class="img-fluid mb-4">
                             {{/each}}
+                        {{else}}
+                            <h2 id="noImg">This column is empty</h2>
                         {{/if}}
                     </div>
                 </div>
@@ -54,13 +58,58 @@
                     {{#if name.username}}
                         <button><a href="/userPage">{{ name.username }}</a></button>
                         <button data-toggle="modal" data-target="#imgUpload">upload</button>
-                        <button><a href="/signup">settings</a></button>
+                        <button data-toggle="modal" data-target="#changePassword">change password</button>
                         <button><a href="/logout">logout</a></button>
                     {{else}}
                         <button><a href="/signup">signup</a></button>
                         <button><a href="/login">login</a></button>
                     {{/if}}
                 </div>
+
+             <!--Password Change Modal-->
+            <div class="modal fade" id="changePassword" tabindex="-1" role="dialog"
+                aria-labelledby="changePasswordTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changePasswordTitle">Change Password</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="changePasswordForm" name="changePasswordForm" action="/changePassword"
+                                method="POST" class="changePasswordForm">
+
+                                <div class="fields">
+                                    <div class="form-group col-xs-4">
+                                        <input class="field" id="currentPass" type="text" name="currentPass"
+                                            placeholder="Current password" />
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input class="field" id="newPass" type="password" name="newPass"
+                                            placeholder="New password" />
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input class="field" id="pass2" type="password" name="pass2"
+                                            placeholder="Retype password" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="alert alert-danger" id="error" role="alert">
+                                        Password is incorrect
+                                    </div>
+                                    <input id="signupCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
+                                    <button class="btn btn-secondary rounded-pill" id="cancelButton"
+                                        data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-secondary rounded-pill" id="changePasswordButton"
+                                        type="submit">Change Password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
                             <!--upload Modal-->
             <div class="modal fade" id="imgUpload" tabindex="-1" role="dialog">
