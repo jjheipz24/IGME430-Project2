@@ -75,7 +75,7 @@ const showError = (message) => {
       }
   
       if($("#newPass").val() !== $("#pass2").val()) {
-        showError("Passwords do not match");
+        showError("Passwords don't match")
         return false;           
       }
   
