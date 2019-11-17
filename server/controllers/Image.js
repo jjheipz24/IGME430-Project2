@@ -40,7 +40,7 @@ const uploadImage = (req, res) => {
 
   // If there is an error while saving, let the user know
   savePromise.catch((error) => {
-    return res.json({ error });
+    res.json({ error });
   });
 
   // Return out
