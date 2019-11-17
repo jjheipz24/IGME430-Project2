@@ -122,7 +122,6 @@ const homePage = (req, res) => {
 Find the images uploaded by the user and create
 an array of their img paths. Then, split that array into 3 parts to pass
 into the 3 columns in the view. Also, pass in the username and csrf token */
-const homePage = (req, res) => {
 const userPage = (req, res) => {
   Img.ImgModel.findByUser(req.session.account._id, (err, docs) => {
     if (err) {
