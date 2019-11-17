@@ -39,13 +39,9 @@ const uploadImage = (req, res) => {
   }));
 
   // If there is an error while saving, let the user know
-<<<<<<< HEAD
   savePromise.catch((error) => {
     res.json({ error });
   });
-=======
-  savePromise.catch((error) => res.json({ error }));
->>>>>>> 633f5644943a626691bec1ccb2f3bab23a947481
 
   // Return out
   return savePromise;
