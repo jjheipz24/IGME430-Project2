@@ -20,7 +20,7 @@ const logout = (req, res) => {
 
 const errorPage = (req, res) => {
   res.render('404');
-}
+};
 
 const login = (request, response) => {
   const req = request;

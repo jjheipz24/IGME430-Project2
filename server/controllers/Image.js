@@ -4,13 +4,13 @@ const Img = models.Images;
 const uploadImage = (req, res) => {
   // If there are no files, return an error
   if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).json({ error: 'No files were uploaded', });
+    return res.status(400).json({ error: 'No files were uploaded' });
   }
 
 
   if (req.files.img.truncated) {
-    return res.status(400).json({ 
-      error: 'File is too large', 
+    return res.status(400).json({
+      error: 'File is too large',
     });
   }
 
@@ -48,8 +48,8 @@ const retrieveImage = (req, res) => {
     }
 
     if (!doc) {
-      return res.status(400).json({ 
-        error: 'File not found', 
+      return res.status(400).json({
+        error: 'File not found',
       });
     }
 
@@ -76,7 +76,7 @@ const homePage = (req, res) => {
   Img.ImgModel.findRandom((err, docs) => {
     if (err) {
       console.log(err);
-      return res.status(400).json({ error: 'An error occured', });
+      return res.status(400).json({ error: 'An error occured' });
     }
 
     const allImages = [];
