@@ -128,7 +128,7 @@ const changePassword = (request, response) => {
     });
   }
 
-  Account.AccountModel.authenticate(req.session.account.username, req.body.currentPass,
+  return Account.AccountModel.authenticate(req.session.account.username, req.body.currentPass,
     (err, doc) => {
       if (err) {
         return res.status(400).json({
@@ -148,24 +148,20 @@ const changePassword = (request, response) => {
         }, {
           salt,
           password: hash,
-        }, () => {
-          if (err) {
+        }, (error) => {
+          if (error) {
             return res.status(400).json({
-              err,
+              error,
             });
           }
-          return res.status(200).json({
-            message: 'update successful',
-          });
+          return hash;
         });
       });
 
       return res.redirect('/userPage');
     });
-  return res.status(400).json({
-    err: 'update failed',
-  });
 };
+
 // gets the csrf token for encryption
 const getToken = (request, response) => {
   const req = request;

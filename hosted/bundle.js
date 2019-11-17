@@ -15,11 +15,32 @@ var sendAjax = function sendAjax(action, data) {
     data: data,
     dataType: "json",
     success: function success(result, status, xhr) {
-      $("#error").fadeOut(400);
+      $(".error").fadeOut(400);
 
       window.location = result.redirect;
     },
     error: function error(xhr, status, _error) {
+      var messageObj = JSON.parse(xhr.responseText);
+
+      showError(messageObj.error);
+    }
+  });
+};
+
+var fileUpload = function fileUpload(action, data) {
+  $.ajax({
+    cache: false,
+    type: "POST",
+    url: action,
+    data: data,
+    processData: false,
+    contentType: false,
+    success: function success(result, status, xhr) {
+      $(".error").fadeOut(400);
+
+      window.location = result.redirect;
+    },
+    error: function error(xhr, status, _error2) {
       var messageObj = JSON.parse(xhr.responseText);
 
       showError(messageObj.error);
@@ -33,7 +54,7 @@ $(document).ready(function () {
   $("#signupForm").on("submit", function (e) {
     e.preventDefault();
 
-    $("#error").fadeOut(400);
+    $(".error").fadeOut(400);
 
     if ($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == '') {
       showError("All fields are required");
@@ -55,7 +76,7 @@ $(document).ready(function () {
   $("#loginForm").on("submit", function (e) {
     e.preventDefault();
 
-    $("#error").fadeOut(400);
+    $(".error").fadeOut(400);
 
     if ($("#user").val() == '') {
       showError("Username is required");
@@ -77,7 +98,7 @@ $(document).ready(function () {
   $("#changePasswordForm").on("submit", function (e) {
     e.preventDefault();
 
-    $("#error").fadeOut(400);
+    $(".error").fadeOut(400);
 
     if ($("#currentPass").val() == '' || $("#newPass").val() == '' || $("#pass2").val() == '') {
       showError("All fields are required");
@@ -99,14 +120,14 @@ $(document).ready(function () {
   $("#imgUploadForm").on("submit", function (e) {
     e.preventDefault();
 
-    $("#error").fadeOut(400);
+    $(".error").fadeOut(400);
 
     if ($("#userImg").val() == '') {
       showError("Please select an image");
       return false;
     }
 
-    sendAjax($("#imgUploadForm").attr("action"), $("#imgUploadForm").serialize());
+    fileUpload($("#imgUploadForm").attr("action"), new FormData($("#imgUploadForm")[0]));
 
     return false;
   });

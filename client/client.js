@@ -25,6 +25,27 @@ const sendAjax = (action, data) => {
   });
 }
 
+const fileUpload = (action, data) => {
+  $.ajax({
+    cache: false,
+    type: "POST",
+    url: action,
+    data: data,
+    processData: false,
+    contentType: false,
+    success: (result, status, xhr) => {
+      $(".error").fadeOut(400);
+
+      window.location = result.redirect;
+    },
+    error: (xhr, status, error) => {
+      const messageObj = JSON.parse(xhr.responseText);
+
+      showError(messageObj.error);
+    }
+  });
+}
+
 $(document).ready(() => {
   //handles requests on the signup form after submit clicked
   //shows error messages depending on the error
@@ -105,7 +126,8 @@ $(document).ready(() => {
       return false;
     }
 
-    sendAjax($("#imgUploadForm").attr("action"), $("#imgUploadForm").serialize());
+
+    fileUpload($("#imgUploadForm").attr("action"), new FormData($("#imgUploadForm")[0]));
 
     return false;
   });
