@@ -2,16 +2,16 @@ const models = require('../models');
 const Img = models.Images;
 
 const uploadImage = (req, res) => {
-  //If there are no files, return an error
-  if(!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).json({error: 'No files were uploaded'});
+  // If there are no files, return an error
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).json({ error: 'No files were uploaded' });
   }
 
 
-  if(req.files.img.truncated) {
-    return res.status(400).json({error: 'File is too large'});
+  if (req.files.img.truncated) {
+    return res.status(400).json({ error: 'File is too large' });
   }
-  
+
   const imgFile = {
     name: req.files.img.name,
     data: req.files.img.data,
@@ -21,42 +21,39 @@ const uploadImage = (req, res) => {
   };
 
   const imageModel = new Img.ImgModel(imgFile);
-  
-  //Save the image to mongo
-  let savePromise = imageModel.save();
-  
-  //When it is finished saving, let the user know
-  savePromise.then(()=>{
-    return res.status(201).json({
-      redirect: '/userPage',
-    });
+
+  // Save the image to mongo
+  const savePromise = imageModel.save();
+
+  // When it is finished saving, let the user know
+  savePromise.then(() => res.status(201).json({
+    redirect: '/userPage',
+  }));
+
+  // If there is an error while saving, let the user know
+  savePromise.catch((error) => {
+    res.json({ error });
   });
-  
-  //If there is an error while saving, let the user know
-  savePromise.catch((error)=>{
-    res.json({error});
-  });
-  
-  //Return out
+
+  // Return out
   return savePromise;
 };
 
 const retrieveImage = (req, res) => {
-  Img.ImgModel.findOne({name: req.query.name}, (error, doc) => {
-    
-    if(error) {
-      return res.status(400).json({error});
+  Img.ImgModel.findOne({ name: req.query.name }, (error, doc) => {
+    if (error) {
+      return res.status(400).json({ error });
     }
-    
-    if(!doc) {
-      return res.status(400).json({error: 'File not found'});
+
+    if (!doc) {
+      return res.status(400).json({ error: 'File not found' });
     }
 
     res.writeHead(200, {
       'Content-Type': doc.mimetype,
       'Content-Length': doc.size,
     });
-    
+
     return res.end(doc.data);
   });
 };
@@ -80,14 +77,14 @@ const homePage = (req, res) => {
 
     const allImages = [];
     docs.forEach((doc) => {
-      let imagePath = `./retrieve?name=${doc.name}`;
+      const imagePath = `./retrieve?name=${doc.name}`;
       allImages.push(imagePath);
     });
 
     const categories = [];
 
-    for (let i = 0; i < allImages.length; i += allImages.length/3) {
-      categories.push(allImages.slice(i, i + allImages.length/3));
+    for (let i = 0; i < allImages.length; i += allImages.length / 3) {
+      categories.push(allImages.slice(i, i + allImages.length / 3));
     }
 
     return res.render('app', {
@@ -109,14 +106,14 @@ const userPage = (req, res) => {
 
     const allImages = [];
     docs.forEach((doc) => {
-      let imagePath = `./retrieve?name=${doc.name}`;
+      const imagePath = `./retrieve?name=${doc.name}`;
       allImages.push(imagePath);
     });
 
     const categories = [];
 
-    for (let i = 0; i < allImages.length; i += allImages.length/3) {
-      categories.push(allImages.slice(i, i + allImages.length/3));
+    for (let i = 0; i < allImages.length; i += allImages.length / 3) {
+      categories.push(allImages.slice(i, i + allImages.length / 3));
     }
 
     return res.render('user', {
