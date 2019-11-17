@@ -22,7 +22,7 @@ const errorPage = (req, res) => {
   res.render('404');
 };
 
-//handles the login function on the login page
+// handles the login function on the login page
 const login = (request, response) => {
   const req = request;
   const res = response;
@@ -30,7 +30,7 @@ const login = (request, response) => {
   const username = `${req.body.username}`;
   const password = `${req.body.pass}`;
 
-  
+
   if (!username || !password) {
     return res.status(400).json({
       error: 'Please fill in the required fields',
