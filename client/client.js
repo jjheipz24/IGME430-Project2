@@ -1,7 +1,8 @@
 const showError = (message) => {
-  $("#error").text(message);
-  $("#error").fadeIn(400);
+  $(".error").text(message);
+  $(".error").fadeIn(400);
 }
+
 
 const sendAjax = (action, data) => {
   $.ajax({

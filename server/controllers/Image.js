@@ -104,9 +104,9 @@ const homePage = (req, res) => {
     });
 
     // This inserts ads into the images array every 5 images
-    for(let i = 0; i < allImages.length; i += 5) {
+    for (let i = 0; i < allImages.length; i += 5) {
       allImages.splice(i, 0, './assets/img/ad.png');
-    } 
+    }
 
     const categories = [];
 

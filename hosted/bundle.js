@@ -1,8 +1,8 @@
 "use strict";
 
 var showError = function showError(message) {
-  $("#error").text(message);
-  $("#error").fadeIn(400);
+  $(".error").text(message);
+  $(".error").fadeIn(400);
 };
 
 var sendAjax = function sendAjax(action, data) {

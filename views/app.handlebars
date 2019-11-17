@@ -59,93 +59,11 @@
                 <div class="position-fixed btn-group-vertical">
                     {{#if name.username}}
                     <button><a href="/userPage">{{ name.username }}</a></button>
-                    <button data-toggle="modal" data-target="#imgUpload">upload</button>
-                    <button data-toggle="modal" data-target="#changePassword">change password</button>
                     <button><a href="/logout">logout</a></button>
                     {{else}}
                     <button><a href="/signup">signup</a></button>
                     <button><a href="/login">login</a></button>
                     {{/if}}
-                </div>
-
-                <!--Password Change Modal-->
-                <div class="modal fade" id="changePassword" tabindex="-1" role="dialog"
-                    aria-labelledby="changePasswordTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="changePasswordTitle">Change Password</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="changePasswordForm" name="changePasswordForm" action="/changePassword"
-                                    method="POST" class="changePasswordForm">
-
-                                    <div class="fields">
-                                        <div class="form-group col-xs-4">
-                                            <input class="field" id="currentPass" type="text" name="currentPass"
-                                                placeholder="Current password" />
-                                        </div>
-                                        <div class="form-group col-xs-4">
-                                            <input class="field" id="newPass" type="password" name="newPass"
-                                                placeholder="New password" />
-                                        </div>
-                                        <div class="form-group col-xs-4">
-                                            <input class="field" id="pass2" type="password" name="pass2"
-                                                placeholder="Retype password" />
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <div class="alert alert-danger" id="error" role="alert">
-                                            Password is incorrect
-                                        </div>
-                                        <input id="signupCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
-                                        <button class="btn btn-secondary rounded-pill" id="cancelButton"
-                                            data-dismiss="modal">Cancel</button>
-                                        <button class="btn btn-secondary rounded-pill" id="changePasswordButton"
-                                            type="submit">Change Password</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Image Upload Modal-->
-                <div class="modal fade" id="imgUpload" tabindex="-1" role="dialog">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="imgUploadTitle">Image Upload</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="imgUploadForm" name="imgUploadForm" action="/uploadImg" method="POST"
-                                    class="imgUploadForm" encType="multipart/form-data">
-
-                                    <div class="fields">
-                                        <input type="file" id="userImg" name="img" accept="image/*">
-                                    </div>
-
-                                    <div class="alert alert-danger" id="error" role="alert">
-                                        Please choose an image to upload
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <input id="imgCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
-                                        <button class="btn btn-secondary rounded-pill" id="cancelButton"
-                                            data-dismiss="modal">Cancel</button>
-                                        <button class="btn btn-secondary rounded-pill" id="uploadButton"
-                                            type="submit">Upload</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
             </div>

@@ -249,7 +249,7 @@ p {
     font-size: 18px;
 }
 
-#error {
+.error {
     display: none;
     font-family: 'Rubik', sans-serif;
     color: white;
