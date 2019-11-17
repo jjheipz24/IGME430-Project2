@@ -256,6 +256,10 @@ p {
     background-color: rgba(225, 122, 71, 1);
 }
 
+#passErr{
+    display: none;
+}
+
 #down {
     width: 50px;
     height: 20px;
