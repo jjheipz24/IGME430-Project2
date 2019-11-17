@@ -104,7 +104,7 @@ $(document).ready(() => {
     }
 
     if ($("#newPass").val() !== $("#pass2").val()) {
-      showError("Passwords don't match")
+      showError("Passwords do not match")
       return false;
     }
 
