@@ -11,9 +11,9 @@
         <div class="row justify-content-center">
             <div class="col-10">
                 <header>
-                    <div class="alert alert-success" id="success" role="alert">
+                    <!--<div class="alert alert-success" id="success" role="alert">
                         Password change successful
-                    </div>
+                    </div>-->
                     <h1 id="userTitle"><a href="/">{{ name }}</a></h1>
                     <p>this is your personalized shmood page</p>
                 </header>
@@ -28,37 +28,29 @@
                 <div class="row">
                     <div class="col">
                         {{#if imgs}}
-                            {{#each imgs}}
-                                <img src={{this}} class="img-fluid mb-4">
-                            {{/each}}
+                        {{#each imgs}}
+                        <img src={{this}} class="img-fluid mb-4">
+                        {{/each}}
                         {{else}}
-                            <h2 id="noImg">{{ name }} has no uploaded images</h2>
+                        <h2 id="noImg">{{ name }} has no uploaded images</h2>
                         {{/if}}
                     </div>
                     <div class="col">
                         {{#if imgs2}}
-                            {{#each imgs2}}
-                                <img src={{this}} class="img-fluid mb-4">
-                            {{/each}}
+                        {{#each imgs2}}
+                        <img src={{this}} class="img-fluid mb-4">
+                        {{/each}}
                         {{/if}}
                     </div>
                     <div class="col">
                         {{#if imgs3}}
-                            {{#each imgs3}}
-                                <img src={{this}} class="img-fluid mb-4">
-                            {{/each}}
+                        {{#each imgs3}}
+                        <img src={{this}} class="img-fluid mb-4">
+                        {{/each}}
                         {{/if}}
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="position-fixed btn-group-vertical">
-                <button><a href="/userPage">{{ name }}</a></button>
-                <button>upload</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePassword">Change
-                    Password</button>
-                <button><a href="/logout">logout</a></button>
-            </div> -->
 
             <div class="col-1" id="sidebar">
                 <div class="position-fixed btn-group-vertical">
@@ -68,38 +60,36 @@
                     <button><a href="/logout">logout</a></button>
                 </div>
 
-                                            <!--upload Modal-->
-            <div class="modal fade" id="imgUpload" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="imgUploadTitle">Image Upload</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="imgUploadForm" name="imgUploadForm" action="/uploadImg"
-                                method="POST" class="imgUploadForm" encType="multipart/form-data">
+                <!--upload Modal-->
+                <div class="modal fade" id="imgUpload" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="imgUploadTitle">Image Upload</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="imgUploadForm" name="imgUploadForm" action="/uploadImg" method="POST"
+                                    class="imgUploadForm" encType="multipart/form-data">
 
-                                <div class="fields">
-                                    <input type="file"
-                                    id="userImg" name="img"
-                                    accept="image/*">
-                                </div>
+                                    <div class="fields">
+                                        <input type="file" id="userImg" name="img" accept="image/*">
+                                    </div>
 
-                                <div class="modal-footer">
-                                    <input id="imgCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
-                                    <button class="btn btn-secondary rounded-pill" id="cancelButton"
-                                        data-dismiss="modal">Cancel</button>
-                                    <button class="btn btn-secondary rounded-pill" id="uploadButton"
-                                        type="submit">Upload</button>
-                                </div>
-                            </form>
+                                    <div class="modal-footer">
+                                        <input id="imgCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
+                                        <button class="btn btn-secondary rounded-pill" id="cancelButton"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button class="btn btn-secondary rounded-pill" id="uploadButton"
+                                            type="submit">Upload</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
                 <!--Password Change Modal-->
                 <div class="modal fade" id="changePassword" tabindex="-1" role="dialog"
@@ -130,10 +120,10 @@
                                                 placeholder="Retype password" />
                                         </div>
                                     </div>
+                                    <div class="alert alert-danger" id="error" role="alert">
+                                        Passwords don't match
+                                    </div>
                                     <div class="modal-footer">
-                                        <div class="alert alert-danger" id="error" role="alert">
-                                            Password is incorrect
-                                        </div>
                                         <input id="signupCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
                                         <button class="btn btn-secondary rounded-pill" id="cancelButton"
                                             data-dismiss="modal">Cancel</button>
