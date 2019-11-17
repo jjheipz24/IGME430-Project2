@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     font-family: 'Rubik', sans-serif;
     height: 100%;
     width: 100%;
@@ -8,13 +9,19 @@ html, body {
     background: linear-gradient(#f8f8f8, #FAFAFA, #DEDEDE);
 }
 
-#title, #notFound, #nothing, #sidebar button, #sidebar2 button, #userTitle {
+#title,
+#notFound,
+#nothing,
+#sidebar button,
+#sidebar2 button,
+#userTitle {
     font-family: 'Rubik', sans-serif;
     color: #212121;
     padding: 0;
 }
 
-#notFound, #nothing {
+#notFound,
+#nothing {
     color: #f8f8f8;
 }
 
@@ -50,7 +57,7 @@ p {
     height: 40px;
     width: 40;
     padding-top: 5px;
-    float:left;
+    float: left;
     border-radius: 8px;
 }
 
@@ -59,11 +66,13 @@ p {
     padding: 100px 100px 100px 20px;
 }
 
-.login-signup-page, #error-page {
+.login-signup-page,
+#error-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
     background: rgb(52, 78, 92);
+    /* Linear gradient created with https://cssgradient.io/ */
     background: linear-gradient(135deg, rgba(52, 78, 92, 1) 0%, rgba(74, 177, 157, 1) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
     background-size: 200% 200%;
     animation: rainbow 15s ease-in-out infinite;
@@ -71,13 +80,15 @@ p {
 }
 
 /**LOGIN PAGE**/
-#login, #signup {
+#login,
+#signup {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-#loginForm, #signupForm {
+#loginForm,
+#signupForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -96,7 +107,8 @@ p {
     margin-bottom: 30px;
 }
 
-#loginForm h1, #signupForm h1 {
+#loginForm h1,
+#signupForm h1 {
     font-size: 34px;
     text-align: center;
 }
@@ -134,7 +146,9 @@ p {
     border-image-slice: 1;
 }
 
-#loginButton, #signupButton, #down {
+#loginButton,
+#signupButton,
+#down {
     width: 100%;
     max-width: 250px;
     margin-bottom: 50px;
@@ -143,18 +157,22 @@ p {
     border: none;
 }
 
-#loginButton:hover, #signupButton:hover, #down:hover{
+#loginButton:hover,
+#signupButton:hover,
+#down:hover {
     background-image: linear-gradient(135deg, rgba(52, 78, 92, 1) 0%, rgba(74, 177, 157, 1) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
     animation: rainbow 5s ease-in-out infinite;
     color: white;
 }
 
-#loginForm p, #signupForm p{
+#loginForm p,
+#signupForm p {
     font-size: 14px;
 }
 
-#loginForm a, #signupForm a{
-    color:  rgba(74, 177, 157, 1);
+#loginForm a,
+#signupForm a {
+    color: rgba(74, 177, 157, 1);
 }
 
 /***************/
@@ -175,19 +193,21 @@ p {
     text-decoration: none;
 }
 
-#title, #userTitle {
+#title,
+#userTitle {
     font-size: 6em;
     background: linear-gradient(90deg, rgba(52, 78, 92, 1) 0%, rgba(74, 177, 157, 1) 25%, rgba(239, 201, 88, 1) 50%, rgba(225, 122, 71, 1) 75%, rgba(176, 95, 109, 1) 100%);
     background-size: 600% 600%;
 
     animation: rainbow 5s ease-in-out infinite;
     background-clip: text;
-    -webkit-background-clip:text;
-    color:rgba(0,0,0,1);
+    -webkit-background-clip: text;
+    color: rgba(0, 0, 0, 1);
 }
 
-#title a:hover, #userTitle a:hover {
-    color:rgba(0,0,0,0);
+#title a:hover,
+#userTitle a:hover {
+    color: rgba(0, 0, 0, 0);
     text-decoration: none;
 }
 
@@ -197,7 +217,8 @@ a {
     transition: all .2s ease-in;
 }
 
-#sidebar button, #sidebar2 button {
+#sidebar button,
+#sidebar2 button {
     font-weight: lighter;
     font-size: 1.5em;
     text-align: left;
@@ -208,8 +229,8 @@ a {
 
     animation: rainbow 5s ease-in-out infinite;
     background-clip: text;
-    -webkit-background-clip:text;
-    color:rgba(0,0,0,1);
+    -webkit-background-clip: text;
+    color: rgba(0, 0, 0, 1);
 
     padding: 2px 15px 2px 15px;
     border-radius: 25px;
@@ -217,13 +238,15 @@ a {
 }
 
 /* https://codepen.io/bsander/pen/pPpbNm */
-#sidebar button:hover, #sidebar2 button:hover  {
-    color:rgba(0,0,0,0);
-    
+#sidebar button:hover,
+#sidebar2 button:hover {
+    color: rgba(0, 0, 0, 0);
+
 }
 
-#sidebar button a:hover, #sidebar2 button a:hover {
-    color:rgba(0,0,0,0);
+#sidebar button a:hover,
+#sidebar2 button a:hover {
+    color: rgba(0, 0, 0, 0);
     text-decoration: none;
 }
 
@@ -236,7 +259,7 @@ p {
     height: 40px;
     width: 40;
     padding-top: 5px;
-    float:left;
+    float: left;
     border-radius: 8px;
 }
 
@@ -245,7 +268,8 @@ p {
     background-color: #338acc;
 }
 
-#changePasswordForm button, #imgUploadForm button{
+#changePasswordForm button,
+#imgUploadForm button {
     font-size: 18px;
 }
 
@@ -261,9 +285,18 @@ p {
     height: 20px;
 }
 
-@keyframes rainbow { 
-    0%{background-position:left}
-    50%{background-position:right}
-    100%{background-position:left}
-  }
+@keyframes rainbow {
+    0% {
+        background-position: left
+    }
+
+    50% {
+        background-position: right
+    }
+
+    100% {
+        background-position: left
+    }
+}
+
 /* gradient text: https://codepen.io/bsander/pen/pPpbNm */
