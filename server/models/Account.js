@@ -8,6 +8,7 @@ const iterations = 10000;
 const saltLength = 64;
 const keyLength = 64;
 
+//Scheme provides properties that each Account model will have
 const AccountSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -36,6 +37,7 @@ AccountSchema.statics.toAPI = doc => ({
   _id: doc._id,
 });
 
+
 const validatePassword = (doc, password, callback) => {
   const pass = doc.password;
 
@@ -55,6 +57,7 @@ AccountSchema.statics.findByUsername = (name, callback) => {
   return AccountModel.findOne(search, callback);
 };
 
+//Used to encrypt password
 AccountSchema.statics.generateHash = (password, callback) => {
   const salt = crypto.randomBytes(saltLength);
 
@@ -63,6 +66,7 @@ AccountSchema.statics.generateHash = (password, callback) => {
   );
 };
 
+//Searches to make sure username and password are valid
 AccountSchema.statics.authenticate = (username, password, callback) =>
 AccountModel.findByUsername(username, (err, doc) => {
   if (err) {
