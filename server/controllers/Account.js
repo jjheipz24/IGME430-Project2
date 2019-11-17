@@ -18,6 +18,10 @@ const logout = (req, res) => {
   res.redirect('/');
 };
 
+const errorPage = (req, res) => {
+  res.render('404');
+}
+
 const login = (request, response) => {
   const req = request;
   const res = response;
@@ -167,3 +171,4 @@ module.exports.signupPage = signupPage;
 module.exports.signup = signup;
 module.exports.getToken = getToken;
 module.exports.changePassword = changePassword;
+module.exports.errorPage = errorPage;

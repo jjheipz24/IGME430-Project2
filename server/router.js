@@ -16,7 +16,7 @@ const router = (app) => {
   app.post('/uploadImg', controllers.Image.uploadImage);
   app.get('/retrieve', controllers.Image.retrieve);
 
-  app.get('*', controllers.Account.errorPage);
+  app.get('/*', controllers.Account.errorPage);
 };
 
 module.exports = router;
