@@ -141,7 +141,7 @@ const changePassword = (request, response) => {
         }, {
           salt,
           password: hash,
-        }, (err) => {
+        }, () => {
           if (err) {
             return res.status(400).json({
               err,
@@ -150,7 +150,7 @@ const changePassword = (request, response) => {
         });
       });
 
-      return res.redirect('/userPage');
+      return res.status(404).redirect('/userPage');
     });
 };
 
