@@ -6,14 +6,8 @@
 </head>
 
 <body class="login-signup-page">
-  <!--<nav><a href="/login"><img id="logo" src="/assets/img/face.png" alt="face logo" /></a>
-    <div class="navlink"><a href="/login">Login</a></div>
-    <div class="navlink"><a href="/signup">Sign up</a></div>
-  </nav>-->
-  <!--<header class="row">
-      <h1 id="title">SHMOOD</h1>
-      <p>this is placeholder text for the website</p>
-    </header>-->
+ 
+ <!-- Card -->
   <div class="container" fluid>
     <section id="login" class="row">
       <form id="loginForm" name="loginForm" action="/login" method="POST" class="mainForm">
@@ -21,6 +15,8 @@
           <img class="icon" src="./assets/img/largeLogo.png" alt="logo for Shmood">
           <h1>WELCOME</h1>
         </div>
+
+        <!-- Login input fields -->
         <div class="fields">
           <div class="form-group col-xs-4">
             <input class="field" id="user" type="text" name="username" placeholder="Username" />
@@ -32,10 +28,12 @@
         <input id="loginCsrf" type="hidden" name="_csrf" value={{csrfToken}} />
         <button class="btn btn-secondary rounded-pill" id="loginButton" type="submit">Sign In</button>
         
+        <!-- Error msg div -->
         <div class="alert alert-danger" id="error" role="alert">
           Username or password is incorrect
         </div>
         
+        <!-- link to signup page -->
         <p>Don't have an account? <a href="./signup">Sign Up</a></p>
       </form>
     </section>
