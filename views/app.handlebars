@@ -20,6 +20,7 @@
             </div>
         </div>
 
+        <!-- Image display columns -->
         <div class="row justify-content-center">
             <div class="col-10" id="grid">
                 <div class="row">
@@ -53,6 +54,7 @@
                 </div>
             </div>
 
+            <!-- Sidebar, conditionally changes based on login/logout -->
             <div class="col-1" id="sidebar">
                 <div class="position-fixed btn-group-vertical">
                     {{#if name.username}}
@@ -111,7 +113,7 @@
                     </div>
                 </div>
 
-                <!--upload Modal-->
+                <!--Image Upload Modal-->
                 <div class="modal fade" id="imgUpload" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">

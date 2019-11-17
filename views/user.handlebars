@@ -11,9 +11,6 @@
         <div class="row justify-content-center">
             <div class="col-10">
                 <header>
-                    <!--<div class="alert alert-success" id="success" role="alert">
-                        Password change successful
-                    </div>-->
                     <h1 id="userTitle"><a href="/">{{ name }}</a></h1>
                     <p>this is your personalized shmood page</p>
                 </header>
@@ -23,6 +20,7 @@
             </div>
         </div>
 
+        <!-- Image display columns -->
         <div class="row justify-content-center">
             <div class="col-10" id="grid">
                 <div class="row">
@@ -56,6 +54,7 @@
                 </div>
             </div>
 
+            <!-- Sidebar, always the same due to requiring login for the page -->
             <div class="col-1" id="sidebar">
                 <div class="position-fixed btn-group-vertical">
                     <button><a href="/userPage">{{ name }}</a></button>
@@ -64,7 +63,7 @@
                     <button><a href="/logout">logout</a></button>
                 </div>
 
-                <!--upload Modal-->
+                <!--Image Upload Modal-->
                 <div class="modal fade" id="imgUpload" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
