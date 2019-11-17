@@ -1,8 +1,10 @@
+//handles all error messages
 const showError = (message) => {
   $("#error").text(message);
   $("#error").fadeIn(400);
 }
 
+//handles requests
 const sendAjax = (action, data) => {
   $.ajax({
     cache: false,
@@ -24,6 +26,8 @@ const sendAjax = (action, data) => {
 }
 
 $(document).ready(() => {
+  //handles requests on the signup form after submit clicked
+  //shows error messages depending on the error
   $("#signupForm").on("submit", (e) => {
     e.preventDefault();
 
@@ -44,6 +48,8 @@ $(document).ready(() => {
     return false;
   });
 
+  //handles requests on the login form after submit clicked
+  //shows error messages depending on the error
   $("#loginForm").on("submit", (e) => {
     e.preventDefault();
 
@@ -64,6 +70,8 @@ $(document).ready(() => {
     return false;
   });
 
+  //handles requests on the change password form after submit clicked
+  //shows error messages depending on the error
   $("#changePasswordForm").on("submit", (e) => {
     e.preventDefault();
 
@@ -85,7 +93,8 @@ $(document).ready(() => {
   });
 
 
-
+  //handles requests on the image upload form after submit clicked
+  //shows error messages depending on the error
   $("#imgUploadForm").on("submit", (e) => {
     e.preventDefault();
 
