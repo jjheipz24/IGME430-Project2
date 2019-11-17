@@ -6,7 +6,8 @@ const Img = models.Images;
 Checks if files were sent, and makes sure they aren't too large
 
 File data is then saved to the image schema and saved to the database
-under the current logged in user*/
+under the current logged in user
+https://github.com/AustinWilloughby/SimpleNodeFileUpload*/
 const uploadImage = (req, res) => {
   // If there are no files, return an error
   if (!req.files || Object.keys(req.files).length === 0) {
@@ -50,7 +51,8 @@ const uploadImage = (req, res) => {
 /* Handles image retrieval
 
 find the image via image name, then return it if
-it is successfully found */
+it is successfully found
+https://github.com/AustinWilloughby/SimpleNodeFileUpload */
 const retrieveImage = (req, res) => {
   Img.ImgModel.findOne({ name: req.query.name }, (error, doc) => {
     if (error) {
@@ -111,6 +113,7 @@ const homePage = (req, res) => {
     const categories = [];
 
     // Split array
+    //https://ourcodeworld.com/articles/read/278/how-to-split-an-array-into-chunks-of-the-same-size-easily-in-javascript
     for (let i = 0; i < allImages.length; i += allImages.length / 3) {
       categories.push(allImages.slice(i, i + allImages.length / 3));
     }

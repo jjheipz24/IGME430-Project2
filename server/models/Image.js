@@ -7,7 +7,8 @@ mongoose.Promise = global.Promise;
 const convertID = mongoose.Types.ObjectId;
 let ImgModel = {};
 
-/* Create a new schema for images */
+/* Create a new schema for images 
+https://github.com/AustinWilloughby/SimpleNodeFileUpload*/
 const ImageSchema = new mongoose.Schema({
   name: { // The file name
     type: String,
