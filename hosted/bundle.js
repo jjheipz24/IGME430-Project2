@@ -1,10 +1,12 @@
 "use strict";
 
+//handles all error messages
 var showError = function showError(message) {
   $(".error").text(message);
   $(".error").fadeIn(400);
 };
 
+//handles requests
 var sendAjax = function sendAjax(action, data) {
   $.ajax({
     cache: false,
@@ -26,6 +28,8 @@ var sendAjax = function sendAjax(action, data) {
 };
 
 $(document).ready(function () {
+  //handles requests on the signup form after submit clicked
+  //shows error messages depending on the error
   $("#signupForm").on("submit", function (e) {
     e.preventDefault();
 
@@ -46,6 +50,8 @@ $(document).ready(function () {
     return false;
   });
 
+  //handles requests on the login form after submit clicked
+  //shows error messages depending on the error
   $("#loginForm").on("submit", function (e) {
     e.preventDefault();
 
@@ -66,6 +72,8 @@ $(document).ready(function () {
     return false;
   });
 
+  //handles requests on the change password form after submit clicked
+  //shows error messages depending on the error
   $("#changePasswordForm").on("submit", function (e) {
     e.preventDefault();
 
@@ -86,6 +94,8 @@ $(document).ready(function () {
     return false;
   });
 
+  //handles requests on the image upload form after submit clicked
+  //shows error messages depending on the error
   $("#imgUploadForm").on("submit", function (e) {
     e.preventDefault();
 
