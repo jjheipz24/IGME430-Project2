@@ -127,7 +127,7 @@ const changePassword = (request, response) => {
       error: 'Passwords do not match',
     });
   }
-  // makes sure the user inputs the correct current password
+
   Account.AccountModel.authenticate(req.session.account.username, req.body.currentPass,
     (err, doc) => {
       if (err) {
@@ -141,33 +141,31 @@ const changePassword = (request, response) => {
           err: 'invalid credentials',
         });
       }
-      // encrypts the new password
+
       Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
         Account.AccountModel.updateOne({
           username: req.session.account.username,
         }, {
           salt,
           password: hash,
-        }, () => {
+        }, (err) => {
           if (err) {
             return res.status(400).json({
               err,
             });
           }
-
-          /*return res.status(200).json({
-            message: 'update successful',
-          });*/
+          return res.status(200).json({
+            message: 'update successful'
+          });
         });
       });
 
-      return res.status(404).redirect('/userPage');
+      return res.redirect('/userPage');
     });
-  /*return res.status(400).json({
-    err: 'update failed',
-  });*/
+  return res.status(400).json({
+    err: 'update failed'
+  });
 };
-
 // gets the csrf token for encryption
 const getToken = (request, response) => {
   const req = request;
