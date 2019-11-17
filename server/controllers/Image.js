@@ -1,6 +1,12 @@
+//Import our Image model
 const models = require('../models');
 const Img = models.Images;
 
+/* Handles image upload via express-fileupload 
+Checks if files were sent, and makes sure they aren't too large
+
+File data is then saved to the image schema and saved to the database
+under the current logged in user*/
 const uploadImage = (req, res) => {
   // If there are no files, return an error
   if (!req.files || Object.keys(req.files).length === 0) {
@@ -27,20 +33,24 @@ const uploadImage = (req, res) => {
   // Save the image to mongo
   const savePromise = imageModel.save();
 
-  // When it is finished saving, let the user know
+  // redirect after finished saving
   savePromise.then(() => res.status(201).json({
     redirect: '/userPage',
   }));
 
   // If there is an error while saving, let the user know
   savePromise.catch((error) => {
-    res.json({ error });
+    return res.json({ error });
   });
 
   // Return out
   return savePromise;
 };
 
+/* Handles image retrieval
+
+find the image via image name, then return it if
+it is successfully found */
 const retrieveImage = (req, res) => {
   Img.ImgModel.findOne({ name: req.query.name }, (error, doc) => {
     if (error) {
@@ -62,6 +72,7 @@ const retrieveImage = (req, res) => {
   });
 };
 
+/* Get the csrfToken */
 const getToken = (request, response) => {
   const req = request;
   const res = response;
@@ -72,6 +83,11 @@ const getToken = (request, response) => {
   res.json(csrfJSON);
 };
 
+/* Render the home page
+
+Find 36 random images (or as many as there are <36) and create
+an array of their img paths. Then, split that array into 3 parts to pass
+into the 3 columns in the view. Also, pass in the username and csrf token */
 const homePage = (req, res) => {
   Img.ImgModel.findRandom((err, docs) => {
     if (err) {
@@ -101,6 +117,12 @@ const homePage = (req, res) => {
   });
 };
 
+/* Render the user page
+
+Find the images uploaded by the user and create
+an array of their img paths. Then, split that array into 3 parts to pass
+into the 3 columns in the view. Also, pass in the username and csrf token */
+const homePage = (req, res) => {
 const userPage = (req, res) => {
   Img.ImgModel.findByUser(req.session.account._id, (err, docs) => {
     if (err) {
@@ -116,6 +138,7 @@ const userPage = (req, res) => {
 
     const categories = [];
 
+    // split array
     for (let i = 0; i < allImages.length; i += allImages.length / 3) {
       categories.push(allImages.slice(i, i + allImages.length / 3));
     }
@@ -130,7 +153,7 @@ const userPage = (req, res) => {
   });
 };
 
-
+/* Exports */
 module.exports.uploadImage = uploadImage;
 module.exports.homePage = homePage;
 module.exports.userPage = userPage;
