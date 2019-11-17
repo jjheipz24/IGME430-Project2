@@ -4,11 +4,7 @@ const showError = (message) => {
   $(".error").fadeIn(400);
 }
 
-<<<<<<< HEAD
-
-=======
 //handles requests
->>>>>>> 32e2651567d40276a01ccbf94219f8eed8de3130
 const sendAjax = (action, data) => {
   $.ajax({
     cache: false,
