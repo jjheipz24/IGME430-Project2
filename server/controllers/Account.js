@@ -148,14 +148,14 @@ const changePassword = (request, response) => {
         }, {
           salt,
           password: hash,
-        }, (err) => {
+        }, () => {
           if (err) {
             return res.status(400).json({
               err,
             });
           }
           return res.status(200).json({
-            message: 'update successful'
+            message: 'update successful',
           });
         });
       });
@@ -163,7 +163,7 @@ const changePassword = (request, response) => {
       return res.redirect('/userPage');
     });
   return res.status(400).json({
-    err: 'update failed'
+    err: 'update failed',
   });
 };
 // gets the csrf token for encryption
