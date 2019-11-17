@@ -108,6 +108,7 @@ const signup = (request, response) => {
 };
 
 // allows the user to change their password
+//Thanks to Austin for all of the help
 const changePassword = (request, response) => {
   const req = request;
   const res = response;
@@ -116,6 +117,7 @@ const changePassword = (request, response) => {
   req.body.newPass = `${req.body.newPass}`;
   req.body.pass2 = `${req.body.pass2}`;
 
+  //checks for errors with the fields
   if (!req.body.currentPass || !req.body.newPass || !req.body.pass2) {
     return res.status(400).json({
       error: 'Please fill in the required fields',
@@ -128,6 +130,7 @@ const changePassword = (request, response) => {
     });
   }
 
+  //checks to make sure the current password entered is actually the password
   return Account.AccountModel.authenticate(req.session.account.username, req.body.currentPass,
     (err, doc) => {
       if (err) {
@@ -141,7 +144,7 @@ const changePassword = (request, response) => {
           err: 'invalid credentials',
         });
       }
-
+      //encrypts new password
       Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
         Account.AccountModel.updateOne({
           username: req.session.account.username,
@@ -157,8 +160,10 @@ const changePassword = (request, response) => {
           return hash;
         });
       });
-
-      return res.redirect('/userPage');
+      //redirects to the user page
+      return res.status(200).json({
+        redirect: '/userPage',
+      });
     });
 };
 
