@@ -13,7 +13,7 @@ const sendAjax = (action, data) => {
     data: data,
     dataType: "json",
     success: (result, status, xhr) => {
-      $("#error").fadeOut(400);
+      $(".error").fadeOut(400);
 
       window.location = result.redirect;
     },
@@ -31,7 +31,7 @@ $(document).ready(() => {
   $("#signupForm").on("submit", (e) => {
     e.preventDefault();
 
-    $("#error").fadeOut(400);
+    $(".error").fadeOut(400);
 
     if ($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == '') {
       showError("All fields are required");
@@ -53,7 +53,7 @@ $(document).ready(() => {
   $("#loginForm").on("submit", (e) => {
     e.preventDefault();
 
-    $("#error").fadeOut(400);
+    $(".error").fadeOut(400);
 
     if ($("#user").val() == '') {
       showError("Username is required");
@@ -75,7 +75,7 @@ $(document).ready(() => {
   $("#changePasswordForm").on("submit", (e) => {
     e.preventDefault();
 
-    $("#error").fadeOut(400);
+    $(".error").fadeOut(400);
 
     if ($("#currentPass").val() == '' || $("#newPass").val() == '' || $("#pass2").val() == '') {
       showError("All fields are required");
@@ -98,7 +98,7 @@ $(document).ready(() => {
   $("#imgUploadForm").on("submit", (e) => {
     e.preventDefault();
 
-    $("#error").fadeOut(400);
+    $(".error").fadeOut(400);
 
     if ($("#userImg").val() == '') {
       showError("Please select an image");
