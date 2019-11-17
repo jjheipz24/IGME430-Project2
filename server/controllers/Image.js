@@ -1,8 +1,8 @@
-//Import our Image model
+// Import our Image model
 const models = require('../models');
 const Img = models.Images;
 
-/* Handles image upload via express-fileupload 
+/* Handles image upload via express-fileupload
 Checks if files were sent, and makes sure they aren't too large
 
 File data is then saved to the image schema and saved to the database
@@ -39,9 +39,13 @@ const uploadImage = (req, res) => {
   }));
 
   // If there is an error while saving, let the user know
+<<<<<<< HEAD
   savePromise.catch((error) => {
     res.json({ error });
   });
+=======
+  savePromise.catch((error) => res.json({ error }));
+>>>>>>> 633f5644943a626691bec1ccb2f3bab23a947481
 
   // Return out
   return savePromise;

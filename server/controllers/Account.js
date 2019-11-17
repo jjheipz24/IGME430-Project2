@@ -149,11 +149,18 @@ const changePassword = (request, response) => {
               err,
             });
           }
+
+          return res.status(200).json({
+            message: 'update successful',
+          });
         });
       });
 
       return res.status(404).redirect('/userPage');
     });
+  return res.status(400).json({
+    err: 'update failed',
+  });
 };
 
 const getToken = (request, response) => {
