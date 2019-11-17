@@ -87,7 +87,9 @@ const getToken = (request, response) => {
 
 Find 36 random images (or as many as there are <36) and create
 an array of their img paths. Then, split that array into 3 parts to pass
-into the 3 columns in the view. Also, pass in the username and csrf token */
+into the 3 columns in the view. Also, pass in the username and csrf token\
+
+Also, ad placeholders are added on home page only*/
 const homePage = (req, res) => {
   Img.ImgModel.findRandom((err, docs) => {
     if (err) {
@@ -101,8 +103,14 @@ const homePage = (req, res) => {
       allImages.push(imagePath);
     });
 
+    // This inserts ads into the images array every 5 images
+    for(let i = 0; i < allImages.length; i += 5) {
+      allImages.splice(i, 0, './assets/img/ad.png');
+    } 
+
     const categories = [];
 
+    // Split array
     for (let i = 0; i < allImages.length; i += allImages.length / 3) {
       categories.push(allImages.slice(i, i + allImages.length / 3));
     }
