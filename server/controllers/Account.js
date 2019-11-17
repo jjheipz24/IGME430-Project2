@@ -30,28 +30,30 @@ const login = (request, response) => {
   const username = `${req.body.username}`;
   const password = `${req.body.pass}`;
 
-
+//makes sure all fields are filled
   if (!username || !password) {
     return res.status(400).json({
       error: 'Please fill in the required fields',
     });
   }
-
+//checks to make sure login and password are correct
   return Account.AccountModel.authenticate(username, password, (err, account) => {
     if (err || !account) {
       return res.status(401).json({
         error: 'Wrong username or password',
       });
     }
-
+    //sets the current session account based on username and password added
     req.session.account = Account.AccountModel.toAPI(account);
 
+    //redirects user to their personal page
     return res.status(200).json({
       redirect: '/userPage',
     });
   });
 };
 
+//creates a new account
 const signup = (request, response) => {
   const req = request;
   const res = response;
@@ -72,6 +74,7 @@ const signup = (request, response) => {
     });
   }
 
+  //encrypts the users information
   return Account.AccountModel.generateHash(req.body.pass, (salt, hash) => {
     const accountData = {
       username: req.body.username,
@@ -79,6 +82,7 @@ const signup = (request, response) => {
       password: hash,
     };
 
+    //creates the new account model
     const newAccount = new Account.AccountModel(accountData);
 
     const savePromise = newAccount.save();
@@ -103,6 +107,7 @@ const signup = (request, response) => {
   });
 };
 
+//allows the user to change their password
 const changePassword = (request, response) => {
   const req = request;
   const res = response;
@@ -122,7 +127,7 @@ const changePassword = (request, response) => {
       error: 'Passwords do not match',
     });
   }
-
+//makes sure the user inputs the correct current password
   Account.AccountModel.authenticate(req.session.account.username, req.body.currentPass,
     (err, doc) => {
       if (err) {
@@ -136,13 +141,13 @@ const changePassword = (request, response) => {
           err: 'invalid credentials',
         });
       }
-
+//encrypts the new password
       Account.AccountModel.generateHash(req.body.newPass, (salt, hash) => {
         Account.AccountModel.updateOne({
-          username: req.session.account.username,
+          username: req.session.account.username
         }, {
           salt,
-          password: hash,
+          password: hash
         }, () => {
           if (err) {
             return res.status(400).json({
@@ -151,7 +156,7 @@ const changePassword = (request, response) => {
           }
 
           return res.status(200).json({
-            message: 'update successful',
+            message: 'update successful'
           });
         });
       });
@@ -159,10 +164,11 @@ const changePassword = (request, response) => {
       return res.status(404).redirect('/userPage');
     });
   return res.status(400).json({
-    err: 'update failed',
+    err: 'update failed'
   });
 };
 
+//gets the csrf token for encryption
 const getToken = (request, response) => {
   const req = request;
   const res = response;
