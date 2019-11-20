@@ -16,6 +16,7 @@ const router = (app) => {
   app.post('/uploadImg', controllers.Image.uploadImage);
   app.get('/retrieve', controllers.Image.retrieve);
 
+  // https://stackoverflow.com/questions/6528876/how-to-redirect-404-errors-to-a-page-in-expressjs
   app.get('/*', controllers.Account.errorPage);
 };
 
